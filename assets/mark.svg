@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="navyFill" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#16456A"/>
+      <stop offset="1" stop-color="#0B2740"/>
+    </linearGradient>
+    <linearGradient id="brassStroke" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D4A94F"/>
+      <stop offset="1" stop-color="#B8862B"/>
+    </linearGradient>
+    <linearGradient id="brassFill" x1="14" y1="24" x2="50" y2="46" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E3BE72"/>
+      <stop offset="1" stop-color="#B8862B"/>
+    </linearGradient>
+  </defs>
+  <!-- hexagon badge -->
+  <path d="M32 2 58 17v30L32 62 6 47V17Z" fill="url(#navyFill)" stroke="url(#brassStroke)" stroke-width="2"/>
+  <!-- monoline M, doubling as a roofline -->
+  <path d="M17 45V21.5L32 36l15-14.5V45" fill="none" stroke="url(#brassFill)" stroke-width="5.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="32" cy="13.5" r="2" fill="#F0DDA8"/>
+</svg>

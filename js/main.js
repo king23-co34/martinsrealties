@@ -1,19 +1,21 @@
 /* Homepage logic */
 
 const SERVICES = [
-  { icon: '🏠', title: 'Real Estate', desc: 'Sale, rent and shortlet properties across Nigeria, vetted and ready to view.' },
-  { icon: '🤝', title: 'Property Consulting', desc: 'Guidance on acquisitions, valuation and investment-grade property decisions.' },
-  { icon: '🚜', title: 'Equipment Outsourcing', desc: 'Reliable sourcing and outsourcing of industrial and construction equipment.' },
-  { icon: '🛢️', title: 'Oil & Gas', desc: 'Business solutions and logistics support within the oil and gas sector.' },
-  { icon: '⛏️', title: 'Natural Minerals', desc: 'Sourcing and trade facilitation for natural mineral resources.' },
+  { icon: 'M3 21h18M5 21V7l8-4 8 4v14M9 9h1m-1 4h1m4-4h1m-1 4h1m-5 8v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4', title: 'Real Estate', desc: 'Sale, rent and shortlet properties across Nigeria, vetted and ready to view.' },
+  { icon: 'M17 20h5v-2a4 4 0 0 0-3-3.87M9 20H4v-2a4 4 0 0 1 3-3.87m5-4.13a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7 0a4 4 0 1 0 0-8m-13 8a4 4 0 1 1 0-8', title: 'Property Consulting', desc: 'Guidance on acquisitions, valuation and investment-grade property decisions.' },
+  { icon: 'M3 17h1.5V9.5L9 6h4.5v3H18l3 4v4h-2m-13 0H4v-4M9 17h6m-6 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm6 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z', title: 'Equipment Outsourcing', desc: 'Reliable sourcing and outsourcing of industrial and construction equipment.' },
+  { icon: 'M12 2c2 2.5 4 5.5 4 8.5A4 4 0 0 1 8 10.5C8 7.5 10 4.5 12 2Zm0 20a6 6 0 0 0 6-6c0-1.5-.6-2.7-1.4-3.8A6 6 0 0 1 12 16a6 6 0 0 1-4.6-3.8C6.6 13.3 6 14.5 6 16a6 6 0 0 0 6 6Z', title: 'Oil & Gas', desc: 'Business solutions and logistics support within the oil and gas sector.' },
+  { icon: 'M12 2 3 7l9 5 9-5-9-5Zm-9 10 9 5 9-5M3 17l9 5 9-5', title: 'Natural Minerals', desc: 'Sourcing and trade facilitation for natural mineral resources.' },
 ];
 
 function servicesGrid() {
   const grid = document.getElementById('services-grid');
   if (!grid) return;
   grid.innerHTML = SERVICES.map((s) => `
-    <div class="reveal bg-white border border-black/5 rounded-xl p-6 hover:shadow-lg hover:-translate-y-1 transition-all">
-      <span class="text-3xl">${s.icon}</span>
+    <div class="reveal group bg-white border border-black/5 rounded-xl p-6 hover:shadow-lg hover:-translate-y-1 hover:border-brass/30 transition-all">
+      <span class="w-12 h-12 rounded-lg bg-navy/5 group-hover:bg-brass/10 flex items-center justify-center transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-navy group-hover:text-brass transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="${s.icon}"/></svg>
+      </span>
       <h3 class="font-display text-lg mt-4 mb-2">${s.title}</h3>
       <p class="text-slate text-sm leading-relaxed">${s.desc}</p>
     </div>`).join('');

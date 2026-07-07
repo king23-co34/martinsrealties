@@ -65,7 +65,7 @@ function injectLoader() {
   div.id = 'brand-loader';
   div.innerHTML = `
     <div class="loader-inner">
-      <img src="${assetPath('assets/logo.png')}" alt="Martins Realties" class="loader-logo" />
+      <img src="${assetPath('assets/mark.svg')}" alt="Martins Realties" class="loader-logo" />
       <div class="loader-bar"></div>
       <span class="loader-word tracked-caps">MARTINS REALTIES</span>
     </div>`;
@@ -97,6 +97,14 @@ function navLinks() {
   ];
 }
 
+const NAV_ICONS = {
+  Home: 'M3 12 12 4l9 8M5 10v10a1 1 0 0 0 1 1h3m10-11 2 2m-2-2v10a1 1 0 0 1-1 1h-3m-6 0a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1',
+  About: 'M12 8h.01M11 12h1v4h1m8-4a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z',
+  Properties: 'M3 21h18M5 21V7l8-4 8 4v14M9 9h1m-1 4h1m4-4h1m-1 4h1m-5 8v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4',
+  Blog: 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15Z',
+  Contact: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10Z',
+};
+
 function renderNavbar(active = '') {
   const mount = document.getElementById('site-header');
   if (!mount) return;
@@ -104,61 +112,117 @@ function renderNavbar(active = '') {
   const base = inAdmin ? '../' : '';
   const user = Auth.getUser();
   const links = navLinks().map((l) =>
-    `<a href="${l.href}" class="text-sm tracking-wide hover:text-[var(--brass)] transition-colors ${active === l.label ? 'text-[var(--brass)] font-semibold' : 'text-white/85'}">${l.label}</a>`
+    `<a href="${l.href}" class="relative text-sm tracking-wide transition-colors py-2 ${active === l.label ? 'text-[var(--brass-light)] font-semibold' : 'text-white/80 hover:text-white'}">${l.label}${active === l.label ? '<span class="absolute -bottom-[1px] left-0 right-0 h-[2px] rounded-full bg-[var(--brass-light)]"></span>' : ''}</a>`
   ).join('');
 
   const authArea = Auth.isLoggedIn() ? `
-    <a href="${base}cart.html" class="relative text-white/85 hover:text-[var(--brass)]" aria-label="Cart">
+    <a href="${base}cart.html" class="relative text-white/85 hover:text-[var(--brass-light)] transition-colors" aria-label="Cart">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
       <span id="cart-count" class="hidden absolute -top-2 -right-2 bg-[var(--brass)] text-[10px] text-navy-900 font-bold rounded-full w-4 h-4 items-center justify-center"></span>
     </a>
     <div class="relative group">
       <button class="flex items-center gap-2 text-sm text-white/90">
-        <span class="w-8 h-8 rounded-full bg-[var(--brass)]/20 border border-[var(--brass)]/50 flex items-center justify-center text-[var(--brass-light)] font-semibold">${(user?.name || 'U').charAt(0).toUpperCase()}</span>
+        <span class="w-9 h-9 rounded-full bg-[var(--brass)]/20 border border-[var(--brass)]/50 flex items-center justify-center text-[var(--brass-light)] font-semibold">${(user?.name || 'U').charAt(0).toUpperCase()}</span>
       </button>
-      <div class="absolute right-0 mt-2 w-44 bg-white rounded-lg shadow-xl border border-black/5 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+      <div class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-black/5 py-2 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all z-50">
         <a href="${base}profile.html" class="block px-4 py-2 text-sm text-[var(--charcoal)] hover:bg-[var(--ivory)]">My Profile</a>
         ${user?.role === 'admin' ? `<a href="${base}admin/dashboard.html" class="block px-4 py-2 text-sm text-[var(--charcoal)] hover:bg-[var(--ivory)]">Admin Dashboard</a>` : ''}
         <button onclick="doLogout()" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50">Log out</button>
       </div>
     </div>
   ` : `
-    <a href="${base}login.html" class="text-sm text-white/85 hover:text-[var(--brass)]">Log in</a>
-    <a href="${base}register.html" class="text-sm font-semibold bg-[var(--brass)] text-white px-4 py-2 rounded-md hover:bg-[var(--brass-light)] transition-colors">Get Started</a>
+    <a href="${base}login.html" class="text-sm font-medium text-white/85 hover:text-white transition-colors">Log in</a>
+    <a href="${base}register.html" class="text-sm font-semibold bg-[var(--brass)] text-white px-4 py-2.5 rounded-lg hover:bg-[var(--brass-light)] shadow-[0_2px_10px_rgba(184,134,43,0.35)] transition-colors">Get Started</a>
+  `;
+
+  const mobileAuthArea = Auth.isLoggedIn() ? `
+    <a href="${base}profile.html" class="flex items-center gap-3 text-white/90 text-sm py-2.5"><span class="w-8 h-8 rounded-full bg-[var(--brass)]/20 border border-[var(--brass)]/50 flex items-center justify-center text-[var(--brass-light)] text-xs font-semibold">${(user?.name || 'U').charAt(0).toUpperCase()}</span>My Profile</a>
+    <a href="${base}cart.html" class="flex items-center gap-3 text-white/80 text-sm py-2.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>Cart</a>
+    ${user?.role === 'admin' ? `<a href="${base}admin/dashboard.html" class="flex items-center gap-3 text-white/80 text-sm py-2.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Admin Dashboard</a>` : ''}
+    <button onclick="doLogout()" class="w-full flex items-center gap-3 text-left text-red-400 text-sm py-2.5 mt-2 border-t border-white/10 pt-4"><svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4m7 14 5-5-5-5m5 5H9"/></svg>Log out</button>
+  ` : `
+    <a href="${base}login.html" class="block w-full text-center border border-white/25 text-white font-semibold py-3 rounded-lg text-sm hover:border-[var(--brass-light)] hover:text-[var(--brass-light)] transition-colors">Log in</a>
+    <a href="${base}register.html" class="block w-full text-center bg-[var(--brass)] text-white font-semibold py-3 rounded-lg text-sm hover:bg-[var(--brass-light)] transition-colors">Create an account</a>
   `;
 
   mount.innerHTML = `
-  <header class="sticky top-0 z-40 bg-[var(--navy-dark)]/95 backdrop-blur border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-5 flex items-center justify-between h-16">
-      <a href="${base}index.html" class="flex items-center gap-2.5">
-        <img src="${base}assets/logo.png" alt="Martins Realties logo" class="h-9 w-9 object-contain" />
-        <span class="font-display text-white text-base tracking-wide leading-tight">Martins <span class="text-[var(--brass-light)]">Realties</span></span>
+  <header id="site-header-el" class="fixed top-0 inset-x-0 z-40 bg-[var(--navy-dark)]/95 backdrop-blur border-b border-white/10 transition-shadow">
+    <div class="max-w-7xl mx-auto px-5 flex items-center justify-between h-16 lg:h-[70px]">
+      <a href="${base}index.html" class="flex items-center gap-2.5 shrink-0">
+        <img src="${base}assets/mark.svg" alt="Martins Realties logo" class="h-9 w-9 lg:h-10 lg:w-10 object-contain" />
+        <span class="font-display text-white text-base lg:text-lg tracking-wide leading-tight">Martins <span class="text-[var(--brass-light)]">Realties</span></span>
       </a>
-      <nav class="hidden lg:flex items-center gap-7">${links}</nav>
+      <nav class="hidden lg:flex items-center gap-8">${links}</nav>
       <div class="hidden lg:flex items-center gap-5">${authArea}</div>
-      <button id="mobile-toggle" class="lg:hidden text-white p-2" aria-label="Menu">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <button id="mobile-toggle" class="lg:hidden relative w-10 h-10 flex items-center justify-center rounded-lg border border-white/15 bg-white/5 text-white" aria-label="Open menu" aria-expanded="false">
+        <span class="hamburger-box">
+          <span class="hamburger-line line-1"></span>
+          <span class="hamburger-line line-2"></span>
+          <span class="hamburger-line line-3"></span>
+        </span>
       </button>
     </div>
-    <div id="mobile-menu" class="hidden lg:hidden bg-[var(--navy-dark)] border-t border-white/10 px-5 py-4 space-y-3">
-      ${navLinks().map((l) => `<a href="${l.href}" class="block text-white/85 text-sm py-1">${l.label}</a>`).join('')}
-      <div class="pt-3 border-t border-white/10 flex flex-col gap-3">
-        ${Auth.isLoggedIn() ? `
-          <a href="${base}profile.html" class="text-white/85 text-sm">My Profile</a>
-          <a href="${base}cart.html" class="text-white/85 text-sm">Cart</a>
-          ${user?.role === 'admin' ? `<a href="${base}admin/dashboard.html" class="text-white/85 text-sm">Admin Dashboard</a>` : ''}
-          <button onclick="doLogout()" class="text-left text-red-400 text-sm">Log out</button>
-        ` : `
-          <a href="${base}login.html" class="text-white/85 text-sm">Log in</a>
-          <a href="${base}register.html" class="text-[var(--brass-light)] text-sm font-semibold">Get Started</a>
-        `}
-      </div>
+  </header>
+  <div id="mobile-menu-backdrop" class="hidden lg:hidden fixed inset-0 bg-navy-dark/60 backdrop-blur-sm z-40"></div>
+  <div id="mobile-menu" class="lg:hidden fixed top-0 right-0 h-full w-[84%] max-w-sm z-50 bg-[var(--navy-dark)] border-l border-white/10 translate-x-full transition-transform duration-300 ease-out flex flex-col">
+    <div class="flex items-center justify-between h-16 px-5 border-b border-white/10 shrink-0">
+      <a href="${base}index.html" class="flex items-center gap-2.5">
+        <img src="${base}assets/mark.svg" alt="Martins Realties" class="h-8 w-8 object-contain" />
+        <span class="font-display text-white text-sm tracking-wide">Martins Realties</span>
+      </a>
+      <button id="mobile-close" class="w-9 h-9 flex items-center justify-center rounded-lg border border-white/15 text-white/80" aria-label="Close menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
     </div>
-  </header>`;
+    <nav class="flex-1 overflow-y-auto px-5 py-6 space-y-1">
+      ${navLinks().map((l) => `
+        <a href="${l.href}" class="flex items-center gap-3 rounded-lg px-3 py-3 text-[15px] transition-colors ${active === l.label ? 'bg-white/10 text-[var(--brass-light)] font-semibold' : 'text-white/85 hover:bg-white/5'}">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="${NAV_ICONS[l.label] || ''}"/></svg>
+          ${l.label}
+        </a>`).join('')}
+    </nav>
+    <div class="px-5 py-6 border-t border-white/10 space-y-3 shrink-0">
+      ${mobileAuthArea}
+    </div>
+  </div>`;
 
-  document.getElementById('mobile-toggle')?.addEventListener('click', () => {
-    document.getElementById('mobile-menu')?.classList.toggle('hidden');
+  const toggleBtn = document.getElementById('mobile-toggle');
+  const closeBtn = document.getElementById('mobile-close');
+  const panel = document.getElementById('mobile-menu');
+  const backdrop = document.getElementById('mobile-menu-backdrop');
+
+  function openMenu() {
+    panel.classList.remove('translate-x-full');
+    backdrop.classList.remove('hidden');
+    toggleBtn.classList.add('is-open');
+    toggleBtn.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('overflow-hidden');
+  }
+  function closeMenu() {
+    panel.classList.add('translate-x-full');
+    backdrop.classList.add('hidden');
+    toggleBtn.classList.remove('is-open');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('overflow-hidden');
+  }
+  toggleBtn?.addEventListener('click', () => {
+    toggleBtn.classList.contains('is-open') ? closeMenu() : openMenu();
   });
+  closeBtn?.addEventListener('click', closeMenu);
+  backdrop?.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  panel?.querySelectorAll('a, button').forEach((el) => el.addEventListener('click', () => setTimeout(closeMenu, 80)));
+
+  const headerEl = document.getElementById('site-header-el');
+  const onScroll = () => {
+    if (window.scrollY > 8) headerEl.classList.add('shadow-lg', 'shadow-black/20');
+    else headerEl.classList.remove('shadow-lg', 'shadow-black/20');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // header is fixed now, so push page content down to avoid overlap
+  document.body.style.paddingTop = inAdmin ? '' : `${headerEl.offsetHeight}px`;
 
   refreshCartBadge();
 }
@@ -173,7 +237,7 @@ function renderFooter() {
     <div class="max-w-7xl mx-auto px-5 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
       <div>
         <a href="${base}index.html" class="flex items-center gap-2.5 mb-4">
-          <img src="${base}assets/logo.png" class="h-9 w-9 object-contain" alt="Martins Realties" />
+          <img src="${base}assets/mark.svg" class="h-9 w-9 object-contain" alt="Martins Realties" />
           <span class="font-display text-white text-base">Martins Realties</span>
         </a>
         <p class="text-sm leading-relaxed">${BIZ.legalName} — professional real estate, property consulting, equipment outsourcing, oil &amp; gas, and natural mineral solutions across Nigeria.</p>
@@ -252,7 +316,7 @@ function renderAdminSidebar(active = '') {
   mount.innerHTML = `
     <div class="p-6 border-b border-white/10">
       <a href="../index.html" class="flex items-center gap-2.5">
-        <img src="../assets/logo.png" class="h-8 w-8 object-contain" alt="Martins Realties" />
+        <img src="../assets/mark.svg" class="h-8 w-8 object-contain" alt="Martins Realties" />
         <span class="font-display text-white text-sm">Admin Panel</span>
       </a>
     </div>
@@ -339,7 +403,9 @@ function propertyCard(p) {
       <p class="font-display text-lg mb-1 line-clamp-2">${escapeHtml(p.title)}</p>
       <p class="text-slate text-sm mb-3">${escapeHtml(p.city)}, ${escapeHtml(p.state)}</p>
       <div class="flex items-center gap-4 text-xs text-slate mb-4">
-        <span>🛏 ${p.bedrooms || 0}</span><span>🛁 ${p.bathrooms || 0}</span>${p.areaSqft ? `<span>${p.areaSqft} sqft</span>` : ''}
+        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v5m4-3a2 2 0 0 1 2 2v3M3 11h18v6M3 11v6m18-6v6M3 20v-3m18 3v-3"/></svg>${p.bedrooms || 0}</span>
+        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3Zm2 0V6.5A2.5 2.5 0 0 1 8.5 4c1 0 1.9.6 2.3 1.5M7 21l-1 2m12-2 1 2"/></svg>${p.bathrooms || 0}</span>
+        ${p.areaSqft ? `<span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h6v6H4zm10 10h6v6h-6zM4 20h4m-4-4v4M20 4h-4m4 4V4"/></svg>${p.areaSqft} sqft</span>` : ''}
       </div>
       <p class="text-navy font-display text-xl">${money(p.price, p.currency)}</p>
     </div>

@@ -149,6 +149,7 @@ function faqList() {
       </button>
       <div class="faq-answer hidden mt-3 text-slate text-sm leading-relaxed">${f.a}</div>
     </div>`).join('');
+  initReveal();
   mount.querySelectorAll('.faq-toggle').forEach((btn) => {
     btn.addEventListener('click', () => {
       const answer = btn.parentElement.querySelector('.faq-answer');

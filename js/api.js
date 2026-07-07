@@ -35,15 +35,23 @@ async function request(path, { method = 'GET', body, isForm = false, auth = true
   if (auth && Auth.getToken()) headers['Authorization'] = `Bearer ${Auth.getToken()}`;
 
   let res;
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 25000);
   try {
     res = await fetch(`${API_BASE}${path}`, {
       method,
       headers,
       credentials: 'include',
       body: body ? (isForm ? body : JSON.stringify(body)) : undefined,
+      signal: controller.signal,
     });
   } catch (networkErr) {
+    if (networkErr.name === 'AbortError') {
+      throw new ApiError('The server is taking longer than usual to respond (it may be waking up). Please try again in a moment.', 0, null);
+    }
     throw new ApiError('Unable to reach the server. Check your connection and try again.', 0, null);
+  } finally {
+    clearTimeout(timeout);
   }
 
   let data = null;

@@ -61,6 +61,7 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
   const btn = form.querySelector('button[type=submit]');
   const label = btn.querySelector('.btn-label');
   btn.disabled = true; label.innerHTML = '<span class="btn-spinner"></span>';
+  const slowHint = setTimeout(() => { label.innerHTML = '<span class="btn-spinner"></span><span class="ml-2 text-sm">Waking up server…</span>'; }, 4000);
   const payload = Object.fromEntries(new FormData(form).entries());
   try {
     const res = await Api.register(payload);
@@ -71,6 +72,8 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
   } catch (err) {
     toast(apiErrorMessage(err), 'error');
     btn.disabled = false; label.textContent = 'Create Account';
+  } finally {
+    clearTimeout(slowHint);
   }
 });
 </script>

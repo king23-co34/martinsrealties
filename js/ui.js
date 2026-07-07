@@ -112,45 +112,45 @@ function renderNavbar(active = '') {
   const base = inAdmin ? '../' : '';
   const user = Auth.getUser();
   const links = navLinks().map((l) =>
-    `<a href="${l.href}" class="relative text-sm tracking-wide transition-colors py-2 ${active === l.label ? 'text-[var(--brass-light)] font-semibold' : 'text-white/80 hover:text-white'}">${l.label}${active === l.label ? '<span class="absolute -bottom-[1px] left-0 right-0 h-[2px] rounded-full bg-[var(--brass-light)]"></span>' : ''}</a>`
+    `<a href="${l.href}" class="relative text-sm tracking-wide transition-colors py-2 ${active === l.label ? 'text-brass-light font-semibold' : 'text-white/80 hover:text-white'}">${l.label}${active === l.label ? '<span class="absolute -bottom-[1px] left-0 right-0 h-[2px] rounded-full bg-brass-light"></span>' : ''}</a>`
   ).join('');
 
   const authArea = Auth.isLoggedIn() ? `
-    <a href="${base}cart.html" class="relative text-white/85 hover:text-[var(--brass-light)] transition-colors" aria-label="Cart">
+    <a href="${base}cart.html" class="relative text-white/85 hover:text-brass-light transition-colors" aria-label="Cart">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
-      <span id="cart-count" class="hidden absolute -top-2 -right-2 bg-[var(--brass)] text-[10px] text-navy-900 font-bold rounded-full w-4 h-4 items-center justify-center"></span>
+      <span id="cart-count" class="hidden absolute -top-2 -right-2 bg-brass text-[10px] text-navy-900 font-bold rounded-full w-4 h-4 items-center justify-center"></span>
     </a>
     <div class="relative group">
       <button class="flex items-center gap-2 text-sm text-white/90">
-        <span class="w-9 h-9 rounded-full bg-[var(--brass)]/20 border border-[var(--brass)]/50 flex items-center justify-center text-[var(--brass-light)] font-semibold">${(user?.name || 'U').charAt(0).toUpperCase()}</span>
+        <span class="w-9 h-9 rounded-full bg-brass/20 border border-brass/50 flex items-center justify-center text-brass-light font-semibold">${(user?.name || 'U').charAt(0).toUpperCase()}</span>
       </button>
       <div class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-black/5 py-2 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all z-50">
-        <a href="${base}profile.html" class="block px-4 py-2 text-sm text-[var(--charcoal)] hover:bg-[var(--ivory)]">My Profile</a>
-        ${user?.role === 'admin' ? `<a href="${base}admin/dashboard.html" class="block px-4 py-2 text-sm text-[var(--charcoal)] hover:bg-[var(--ivory)]">Admin Dashboard</a>` : ''}
+        <a href="${base}profile.html" class="block px-4 py-2 text-sm text-charcoal hover:bg-ivory">My Profile</a>
+        ${user?.role === 'admin' ? `<a href="${base}admin/dashboard.html" class="block px-4 py-2 text-sm text-charcoal hover:bg-ivory">Admin Dashboard</a>` : ''}
         <button onclick="doLogout()" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50">Log out</button>
       </div>
     </div>
   ` : `
     <a href="${base}login.html" class="text-sm font-medium text-white/85 hover:text-white transition-colors">Log in</a>
-    <a href="${base}register.html" class="text-sm font-semibold bg-[var(--brass)] text-white px-4 py-2.5 rounded-lg hover:bg-[var(--brass-light)] shadow-[0_2px_10px_rgba(184,134,43,0.35)] transition-colors">Get Started</a>
+    <a href="${base}register.html" class="text-sm font-semibold bg-brass text-white px-4 py-2.5 rounded-lg hover:bg-brass-light shadow-[0_2px_10px_rgba(184,134,43,0.35)] transition-colors">Get Started</a>
   `;
 
   const mobileAuthArea = Auth.isLoggedIn() ? `
-    <a href="${base}profile.html" class="flex items-center gap-3 text-white/90 text-sm py-2.5"><span class="w-8 h-8 rounded-full bg-[var(--brass)]/20 border border-[var(--brass)]/50 flex items-center justify-center text-[var(--brass-light)] text-xs font-semibold">${(user?.name || 'U').charAt(0).toUpperCase()}</span>My Profile</a>
+    <a href="${base}profile.html" class="flex items-center gap-3 text-white/90 text-sm py-2.5"><span class="w-8 h-8 rounded-full bg-brass/20 border border-brass/50 flex items-center justify-center text-brass-light text-xs font-semibold">${(user?.name || 'U').charAt(0).toUpperCase()}</span>My Profile</a>
     <a href="${base}cart.html" class="flex items-center gap-3 text-white/80 text-sm py-2.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>Cart</a>
     ${user?.role === 'admin' ? `<a href="${base}admin/dashboard.html" class="flex items-center gap-3 text-white/80 text-sm py-2.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Admin Dashboard</a>` : ''}
     <button onclick="doLogout()" class="w-full flex items-center gap-3 text-left text-red-400 text-sm py-2.5 mt-2 border-t border-white/10 pt-4"><svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4m7 14 5-5-5-5m5 5H9"/></svg>Log out</button>
   ` : `
-    <a href="${base}login.html" class="block w-full text-center border border-white/25 text-white font-semibold py-3 rounded-lg text-sm hover:border-[var(--brass-light)] hover:text-[var(--brass-light)] transition-colors">Log in</a>
-    <a href="${base}register.html" class="block w-full text-center bg-[var(--brass)] text-white font-semibold py-3 rounded-lg text-sm hover:bg-[var(--brass-light)] transition-colors">Create an account</a>
+    <a href="${base}login.html" class="block w-full text-center border border-white/25 text-white font-semibold py-3 rounded-lg text-sm hover:border-brass-light hover:text-brass-light transition-colors">Log in</a>
+    <a href="${base}register.html" class="block w-full text-center bg-brass text-white font-semibold py-3 rounded-lg text-sm hover:bg-brass-light transition-colors">Create an account</a>
   `;
 
   mount.innerHTML = `
-  <header id="site-header-el" class="fixed top-0 inset-x-0 z-40 bg-[var(--navy-dark)]/95 backdrop-blur border-b border-white/10 transition-shadow">
+  <header id="site-header-el" class="fixed top-0 inset-x-0 z-40 bg-navy-dark/95 backdrop-blur border-b border-white/10 transition-shadow">
     <div class="max-w-7xl mx-auto px-5 flex items-center justify-between h-16 lg:h-[70px]">
       <a href="${base}index.html" class="flex items-center gap-2.5 shrink-0">
         <img src="${base}assets/mark.svg" alt="Martins Realties logo" class="h-9 w-9 lg:h-10 lg:w-10 object-contain" />
-        <span class="font-display text-white text-base lg:text-lg tracking-wide leading-tight">Martins <span class="text-[var(--brass-light)]">Realties</span></span>
+        <span class="font-display text-white text-base lg:text-lg tracking-wide leading-tight">Martins <span class="text-brass-light">Realties</span></span>
       </a>
       <nav class="hidden lg:flex items-center gap-8">${links}</nav>
       <div class="hidden lg:flex items-center gap-5">${authArea}</div>
@@ -164,7 +164,7 @@ function renderNavbar(active = '') {
     </div>
   </header>
   <div id="mobile-menu-backdrop" class="hidden lg:hidden fixed inset-0 bg-navy-dark/60 backdrop-blur-sm z-40"></div>
-  <div id="mobile-menu" class="lg:hidden fixed top-0 right-0 h-full w-[84%] max-w-sm z-50 bg-[var(--navy-dark)] border-l border-white/10 translate-x-full transition-transform duration-300 ease-out flex flex-col">
+  <div id="mobile-menu" class="lg:hidden fixed top-0 right-0 h-full w-[84%] max-w-sm z-50 bg-navy-dark border-l border-white/10 translate-x-full transition-transform duration-300 ease-out flex flex-col">
     <div class="flex items-center justify-between h-16 px-5 border-b border-white/10 shrink-0">
       <a href="${base}index.html" class="flex items-center gap-2.5">
         <img src="${base}assets/mark.svg" alt="Martins Realties" class="h-8 w-8 object-contain" />
@@ -176,7 +176,7 @@ function renderNavbar(active = '') {
     </div>
     <nav class="flex-1 overflow-y-auto px-5 py-6 space-y-1">
       ${navLinks().map((l) => `
-        <a href="${l.href}" class="flex items-center gap-3 rounded-lg px-3 py-3 text-[15px] transition-colors ${active === l.label ? 'bg-white/10 text-[var(--brass-light)] font-semibold' : 'text-white/85 hover:bg-white/5'}">
+        <a href="${l.href}" class="flex items-center gap-3 rounded-lg px-3 py-3 text-[15px] transition-colors ${active === l.label ? 'bg-white/10 text-brass-light font-semibold' : 'text-white/85 hover:bg-white/5'}">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="${NAV_ICONS[l.label] || ''}"/></svg>
           ${l.label}
         </a>`).join('')}
@@ -233,7 +233,7 @@ function renderFooter() {
   const inAdmin = location.pathname.includes('/admin/');
   const base = inAdmin ? '../' : '';
   mount.innerHTML = `
-  <footer class="bg-[var(--navy-dark)] text-white/70 mt-24">
+  <footer class="bg-navy-dark text-white/70 mt-24">
     <div class="max-w-7xl mx-auto px-5 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
       <div>
         <a href="${base}index.html" class="flex items-center gap-2.5 mb-4">
@@ -242,10 +242,10 @@ function renderFooter() {
         </a>
         <p class="text-sm leading-relaxed">${BIZ.legalName} — professional real estate, property consulting, equipment outsourcing, oil &amp; gas, and natural mineral solutions across Nigeria.</p>
         <div class="flex gap-4 mt-5">
-          <a href="${BIZ.facebook}" target="_blank" rel="noopener" aria-label="Facebook" class="hover:text-[var(--brass-light)]">
+          <a href="${BIZ.facebook}" target="_blank" rel="noopener" aria-label="Facebook" class="hover:text-brass-light">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>
           </a>
-          <a href="${BIZ.instagram}" target="_blank" rel="noopener" aria-label="Instagram" class="hover:text-[var(--brass-light)]">
+          <a href="${BIZ.instagram}" target="_blank" rel="noopener" aria-label="Instagram" class="hover:text-brass-light">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
           </a>
         </div>
@@ -253,10 +253,10 @@ function renderFooter() {
       <div>
         <h4 class="text-white font-display text-sm tracking-wide mb-4">Explore</h4>
         <ul class="space-y-2 text-sm">
-          <li><a href="${base}properties.html" class="hover:text-[var(--brass-light)]">Properties</a></li>
-          <li><a href="${base}about.html" class="hover:text-[var(--brass-light)]">About Us</a></li>
-          <li><a href="${base}blog.html" class="hover:text-[var(--brass-light)]">Blog</a></li>
-          <li><a href="${base}contact.html" class="hover:text-[var(--brass-light)]">Contact</a></li>
+          <li><a href="${base}properties.html" class="hover:text-brass-light">Properties</a></li>
+          <li><a href="${base}about.html" class="hover:text-brass-light">About Us</a></li>
+          <li><a href="${base}blog.html" class="hover:text-brass-light">Blog</a></li>
+          <li><a href="${base}contact.html" class="hover:text-brass-light">Contact</a></li>
         </ul>
       </div>
       <div>
@@ -269,8 +269,8 @@ function renderFooter() {
         <h4 class="text-white font-display text-sm tracking-wide mb-4">Contact</h4>
         <ul class="space-y-3 text-sm">
           <li>${BIZ.address}</li>
-          <li><a href="tel:${BIZ.phoneHref}" class="hover:text-[var(--brass-light)]">${BIZ.phone}</a></li>
-          <li><a href="mailto:${BIZ.emails[0]}" class="hover:text-[var(--brass-light)]">${BIZ.emails[0]}</a></li>
+          <li><a href="tel:${BIZ.phoneHref}" class="hover:text-brass-light">${BIZ.phone}</a></li>
+          <li><a href="mailto:${BIZ.emails[0]}" class="hover:text-brass-light">${BIZ.emails[0]}</a></li>
         </ul>
       </div>
     </div>

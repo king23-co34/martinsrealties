@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Orders — Martins Realties Admin</title>
+<link rel="icon" href="../assets/logo.png" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    colors: { navy:'#123A57','navy-dark':'#0B2740', brass:'#B8862B','brass-light':'#D4A94F', ivory:'#F7F5F0', charcoal:'#1F2421', slate:'#5B6B79' },
+    fontFamily: { display:['Fraunces','serif'], sans:['Inter','sans-serif'] },
+  } } };
+</script>
+<link rel="stylesheet" href="../css/style.css" />
+<script defer src="../js/api.js"></script>
+<script defer src="../js/ui.js"></script>
+<script defer src="../js/admin/orders.js"></script>
+</head>
+<body class="bg-ivory text-charcoal" data-page="AdminOrders">
+<div class="flex min-h-screen">
+  <aside id="admin-sidebar" class="hidden lg:block w-64 bg-navy-dark flex-shrink-0"></aside>
+  <div class="flex-1 min-w-0">
+    <div class="lg:hidden bg-navy-dark px-5 py-4 flex items-center justify-between">
+      <span class="font-display text-white">Admin Panel</span>
+      <button id="mobile-admin-toggle" class="text-white p-2"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+    <main class="p-6 lg:p-10">
+      <h1 class="font-display text-3xl mb-8">Orders</h1>
+      <div id="admin-orders-list" class="space-y-4"></div>
+      <div id="admin-pagination" class="flex items-center justify-center gap-2 mt-8"></div>
+    </main>
+  </div>
+</div>
+
+<div id="order-modal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-5">
+  <div class="bg-white rounded-2xl w-full max-w-md p-6">
+    <h2 class="font-display text-xl mb-4">Update Order</h2>
+    <form id="order-form" class="space-y-4">
+      <input type="hidden" name="_id" />
+      <div>
+        <label class="block text-xs text-slate mb-1.5">Status</label>
+        <select name="status" class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass">
+          <option value="pending">Pending</option><option value="reviewing">Reviewing</option><option value="confirmed">Confirmed</option><option value="completed">Completed</option><option value="cancelled">Cancelled</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-xs text-slate mb-1.5">Payment Status</label>
+        <select name="paymentStatus" class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass">
+          <option value="unpaid">Unpaid</option><option value="paid">Paid</option><option value="refunded">Refunded</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-xs text-slate mb-1.5">Admin Note</label>
+        <textarea name="adminNote" rows="3" class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass"></textarea>
+      </div>
+      <div class="flex gap-3">
+        <button type="button" id="cancel-order-modal" class="flex-1 border border-black/10 rounded-md py-2.5 text-sm font-semibold hover:border-brass">Cancel</button>
+        <button type="submit" class="flex-1 bg-navy hover:bg-navy-dark text-white font-semibold py-2.5 rounded-md text-sm flex items-center justify-center"><span class="btn-label">Save</span></button>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Manage Properties — Martins Realties Admin</title>
+<link rel="icon" href="../assets/logo.png" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    colors: { navy:'#123A57','navy-dark':'#0B2740', brass:'#B8862B','brass-light':'#D4A94F', ivory:'#F7F5F0', charcoal:'#1F2421', slate:'#5B6B79' },
+    fontFamily: { display:['Fraunces','serif'], sans:['Inter','sans-serif'] },
+  } } };
+</script>
+<link rel="stylesheet" href="../css/style.css" />
+<script defer src="../js/api.js"></script>
+<script defer src="../js/ui.js"></script>
+<script defer src="../js/admin/properties.js"></script>
+</head>
+<body class="bg-ivory text-charcoal" data-page="AdminProperties">
+<div class="flex min-h-screen">
+  <aside id="admin-sidebar" class="hidden lg:block w-64 bg-navy-dark flex-shrink-0"></aside>
+  <div class="flex-1 min-w-0">
+    <div class="lg:hidden bg-navy-dark px-5 py-4 flex items-center justify-between">
+      <span class="font-display text-white">Admin Panel</span>
+      <button id="mobile-admin-toggle" class="text-white p-2"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+    <main class="p-6 lg:p-10">
+      <div class="flex items-center justify-between mb-8 flex-wrap gap-3">
+        <h1 class="font-display text-3xl">Properties</h1>
+        <button id="new-property-btn" class="bg-brass hover:bg-brass-light text-white font-semibold px-5 py-2.5 rounded-md text-sm transition-colors">+ New Property</button>
+      </div>
+      <div id="admin-properties-table" class="bg-white rounded-2xl border border-black/5 overflow-x-auto"></div>
+      <div id="admin-pagination" class="flex items-center justify-center gap-2 mt-8"></div>
+    </main>
+  </div>
+</div>
+
+<!-- Property Form Modal -->
+<div id="property-modal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-start justify-center overflow-y-auto p-5">
+  <div class="bg-white rounded-2xl w-full max-w-2xl my-10">
+    <div class="flex items-center justify-between p-6 border-b border-black/10">
+      <h2 id="modal-title" class="font-display text-xl">New Property</h2>
+      <button id="close-modal-btn" class="text-slate hover:text-charcoal text-2xl leading-none">&times;</button>
+    </div>
+    <form id="property-form" class="p-6 space-y-4 max-h-[70vh] overflow-y-auto">
+      <input type="hidden" name="_id" />
+      <div>
+        <label class="block text-xs text-slate mb-1.5">Title</label>
+        <input name="title" required class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" />
+      </div>
+      <div>
+        <label class="block text-xs text-slate mb-1.5">Description</label>
+        <textarea name="description" required rows="3" class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass"></textarea>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs text-slate mb-1.5">Type</label>
+          <select name="type" required class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass">
+            <option value="apartment">Apartment</option><option value="house">House</option><option value="duplex">Duplex</option>
+            <option value="bungalow">Bungalow</option><option value="land">Land</option><option value="office">Office</option>
+            <option value="shortlet">Shortlet</option><option value="other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs text-slate mb-1.5">Listing Type</label>
+          <select name="listingType" required class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass">
+            <option value="sale">Sale</option><option value="rent">Rent</option><option value="shortlet">Shortlet</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs text-slate mb-1.5">Price (₦)</label>
+          <input name="price" type="number" min="0" required class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" />
+        </div>
+        <div>
+          <label class="block text-xs text-slate mb-1.5">Status</label>
+          <select name="status" class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass">
+            <option value="available">Available</option><option value="pending">Pending</option><option value="sold">Sold</option><option value="rented">Rented</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid grid-cols-3 gap-4">
+        <div><label class="block text-xs text-slate mb-1.5">Bedrooms</label><input name="bedrooms" type="number" min="0" class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" /></div>
+        <div><label class="block text-xs text-slate mb-1.5">Bathrooms</label><input name="bathrooms" type="number" min="0" class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" /></div>
+        <div><label class="block text-xs text-slate mb-1.5">Area (sqft)</label><input name="areaSqft" type="number" min="0" class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" /></div>
+      </div>
+      <div>
+        <label class="block text-xs text-slate mb-1.5">Address</label>
+        <input name="address" required class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" />
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div><label class="block text-xs text-slate mb-1.5">City</label><input name="city" required class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" /></div>
+        <div><label class="block text-xs text-slate mb-1.5">State</label><input name="state" required class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" /></div>
+      </div>
+      <div>
+        <label class="block text-xs text-slate mb-1.5">Amenities (comma-separated)</label>
+        <input name="amenities" placeholder="Pool, Generator, Security" class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" />
+      </div>
+      <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="featured" class="rounded" /> Feature on homepage</label>
+      <div>
+        <label class="block text-xs text-slate mb-1.5">Images (up to 10)</label>
+        <input name="images" type="file" accept="image/*" multiple class="w-full text-sm" />
+        <div id="existing-images" class="flex flex-wrap gap-2 mt-3"></div>
+      </div>
+      <button type="submit" class="w-full bg-navy hover:bg-navy-dark text-white font-semibold py-3 rounded-md transition-colors flex items-center justify-center">
+        <span class="btn-label">Save Property</span>
+      </button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About Us — Martins Realties</title>
+<meta name="description" content="Learn about D'S Martins Nig Enterprise, trading as Martins Realties — real estate, property consulting and business solutions across Nigeria." />
+<link rel="icon" href="assets/logo.png" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    colors: { navy:'#123A57','navy-dark':'#0B2740', brass:'#B8862B','brass-light':'#D4A94F', ivory:'#F7F5F0', charcoal:'#1F2421', slate:'#5B6B79' },
+    fontFamily: { display:['Fraunces','serif'], sans:['Inter','sans-serif'] },
+  } } };
+</script>
+<link rel="stylesheet" href="css/style.css" />
+<script defer src="js/api.js"></script>
+<script defer src="js/ui.js"></script>
+</head>
+<body class="bg-ivory text-charcoal" data-page="About">
+<div id="site-header"></div>
+
+<section class="bg-navy-dark py-20">
+  <div class="max-w-5xl mx-auto px-5">
+    <span class="text-brass-light text-xs tracked-caps reveal">ABOUT US</span>
+    <h1 class="font-display text-white text-4xl sm:text-5xl mt-4 max-w-2xl reveal">Building trust across real estate and business solutions in Nigeria</h1>
+  </div>
+</section>
+
+<section class="max-w-5xl mx-auto px-5 py-20 grid md:grid-cols-2 gap-14">
+  <div class="reveal">
+    <h2 class="font-display text-2xl mb-4">Who we are</h2>
+    <p class="text-slate leading-relaxed mb-4">Martins Realties is the trading name of <strong>D'S Martins Nig Enterprise</strong>, a Nigerian company delivering professional real estate, property consulting, and diversified business solutions.</p>
+    <p class="text-slate leading-relaxed">From residential and shortlet properties to equipment outsourcing, oil &amp; gas support, and natural mineral trade, we bring the same standard of diligence and transparency to every engagement.</p>
+  </div>
+  <div class="reveal">
+    <h2 class="font-display text-2xl mb-4">Our approach</h2>
+    <p class="text-slate leading-relaxed mb-4">Every property listed on our platform is reviewed by our team before publication. Every inquiry is tracked from first contact through resolution, and every order is confirmed by an administrator before it's finalised.</p>
+    <p class="text-slate leading-relaxed">We combine hands-on consulting with a modern digital platform, so clients can search, review, and reserve properties with confidence.</p>
+  </div>
+</section>
+
+<section class="bg-white py-20">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="flex items-center gap-3 mb-3 reveal"><span class="hex-divider"></span><span class="text-brass text-xs tracked-caps font-semibold">WHAT WE OFFER</span></div>
+    <h2 class="font-display text-3xl mb-12 reveal">Five areas of expertise</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+      <div class="reveal border border-black/5 rounded-xl p-6"><span class="text-3xl">🏠</span><h3 class="font-display text-lg mt-4 mb-2">Real Estate</h3><p class="text-slate text-sm">Sale, rent, and shortlet property listings.</p></div>
+      <div class="reveal border border-black/5 rounded-xl p-6"><span class="text-3xl">🤝</span><h3 class="font-display text-lg mt-4 mb-2">Property Consulting</h3><p class="text-slate text-sm">Investment and acquisition guidance.</p></div>
+      <div class="reveal border border-black/5 rounded-xl p-6"><span class="text-3xl">🚜</span><h3 class="font-display text-lg mt-4 mb-2">Equipment Outsourcing</h3><p class="text-slate text-sm">Sourcing industrial equipment reliably.</p></div>
+      <div class="reveal border border-black/5 rounded-xl p-6"><span class="text-3xl">🛢️</span><h3 class="font-display text-lg mt-4 mb-2">Oil &amp; Gas</h3><p class="text-slate text-sm">Business support within the sector.</p></div>
+      <div class="reveal border border-black/5 rounded-xl p-6"><span class="text-3xl">⛏️</span><h3 class="font-display text-lg mt-4 mb-2">Natural Minerals</h3><p class="text-slate text-sm">Sourcing and trade facilitation.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-5xl mx-auto px-5 py-20 text-center">
+  <h2 class="font-display text-3xl mb-4 reveal">Ready to work with us?</h2>
+  <p class="text-slate mb-8 reveal">Reach out for a consultation, or browse our current property listings.</p>
+  <div class="flex justify-center gap-4 reveal">
+    <a href="contact.html" class="bg-brass hover:bg-brass-light text-white font-semibold px-7 py-3 rounded-md transition-colors">Request a Consultation</a>
+    <a href="properties.html" class="border border-navy/20 hover:border-brass text-navy font-semibold px-7 py-3 rounded-md transition-colors">View Properties</a>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script>document.addEventListener('DOMContentLoaded', initReveal);</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Log In — Martins Realties</title>
+<link rel="icon" href="assets/logo.png" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    colors: { navy:'#123A57','navy-dark':'#0B2740', brass:'#B8862B','brass-light':'#D4A94F', ivory:'#F7F5F0', charcoal:'#1F2421', slate:'#5B6B79' },
+    fontFamily: { display:['Fraunces','serif'], sans:['Inter','sans-serif'] },
+  } } };
+</script>
+<link rel="stylesheet" href="css/style.css" />
+<script defer src="js/api.js"></script>
+<script defer src="js/ui.js"></script>
+</head>
+<body class="bg-ivory text-charcoal" data-page="Login">
+<div id="site-header"></div>
+
+<section class="max-w-md mx-auto px-5 py-20">
+  <div class="text-center mb-8">
+    <img src="assets/logo.png" class="h-14 w-14 mx-auto mb-4" alt="Martins Realties" />
+    <h1 class="font-display text-3xl">Welcome back</h1>
+    <p class="text-slate text-sm mt-2">Log in to manage your properties, cart and orders.</p>
+  </div>
+  <form id="login-form" class="bg-white rounded-2xl border border-black/5 p-8 space-y-4">
+    <div>
+      <label class="block text-xs text-slate mb-1.5">Email address</label>
+      <input name="email" type="email" required class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" />
+    </div>
+    <div>
+      <label class="block text-xs text-slate mb-1.5">Password</label>
+      <input name="password" type="password" required minlength="6" class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" />
+    </div>
+    <button type="submit" class="w-full bg-navy hover:bg-navy-dark text-white font-semibold py-3 rounded-md transition-colors flex items-center justify-center">
+      <span class="btn-label">Log In</span>
+    </button>
+  </form>
+  <p class="text-center text-sm text-slate mt-6">Don't have an account? <a href="register.html" class="text-brass font-semibold">Create one</a></p>
+</section>
+
+<div id="site-footer"></div>
+<script>
+redirectIfLoggedIn();
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button[type=submit]');
+  const label = btn.querySelector('.btn-label');
+  btn.disabled = true; label.innerHTML = '<span class="btn-spinner"></span>';
+  const payload = Object.fromEntries(new FormData(form).entries());
+  try {
+    const res = await Api.login(payload);
+    Auth.setToken(res.token);
+    Auth.setUser(res.data.user);
+    toast('Welcome back!', 'success');
+    const next = new URLSearchParams(location.search).get('next');
+    setTimeout(() => (location.href = next || (Auth.isAdmin() ? 'admin/dashboard.html' : 'profile.html')), 500);
+  } catch (err) {
+    toast(apiErrorMessage(err), 'error');
+    btn.disabled = false; label.textContent = 'Log In';
+  }
+});
+</script>
+</body>
+</html>

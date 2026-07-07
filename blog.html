@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blog — Martins Realties</title>
+<link rel="icon" href="assets/logo.png" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    colors: { navy:'#123A57','navy-dark':'#0B2740', brass:'#B8862B','brass-light':'#D4A94F', ivory:'#F7F5F0', charcoal:'#1F2421', slate:'#5B6B79' },
+    fontFamily: { display:['Fraunces','serif'], sans:['Inter','sans-serif'] },
+  } } };
+</script>
+<link rel="stylesheet" href="css/style.css" />
+<script defer src="js/api.js"></script>
+<script defer src="js/ui.js"></script>
+</head>
+<body class="bg-ivory text-charcoal" data-page="Blog">
+<div id="site-header"></div>
+
+<section class="bg-navy-dark py-16">
+  <div class="max-w-7xl mx-auto px-5">
+    <span class="text-brass-light text-xs tracked-caps">INSIGHTS</span>
+    <h1 class="font-display text-white text-4xl mt-3">Blog</h1>
+  </div>
+</section>
+
+<section class="max-w-3xl mx-auto px-5 py-24 text-center">
+  <div class="border border-dashed border-black/15 rounded-2xl p-14">
+    <p class="font-display text-2xl mb-3">Articles are coming soon</p>
+    <p class="text-slate leading-relaxed max-w-md mx-auto">We're preparing market insights, property guides and consulting tips for real estate, equipment, oil &amp; gas, and mineral solutions. Check back shortly — or explore our current listings while you wait.</p>
+    <a href="properties.html" class="inline-block mt-8 bg-brass hover:bg-brass-light text-white font-semibold px-7 py-3 rounded-md transition-colors">Browse Properties</a>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Dashboard — Martins Realties</title>
+<link rel="icon" href="../assets/logo.png" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    colors: { navy:'#123A57','navy-dark':'#0B2740', brass:'#B8862B','brass-light':'#D4A94F', ivory:'#F7F5F0', charcoal:'#1F2421', slate:'#5B6B79' },
+    fontFamily: { display:['Fraunces','serif'], sans:['Inter','sans-serif'] },
+  } } };
+</script>
+<link rel="stylesheet" href="../css/style.css" />
+<script defer src="../js/api.js"></script>
+<script defer src="../js/ui.js"></script>
+<script defer src="../js/admin/dashboard.js"></script>
+</head>
+<body class="bg-ivory text-charcoal" data-page="AdminDashboard">
+<div class="flex min-h-screen">
+  <aside id="admin-sidebar" class="hidden lg:block w-64 bg-navy-dark flex-shrink-0"></aside>
+  <div class="flex-1 min-w-0">
+    <div class="lg:hidden bg-navy-dark px-5 py-4 flex items-center justify-between">
+      <span class="font-display text-white">Admin Panel</span>
+      <button id="mobile-admin-toggle" class="text-white p-2"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+    <main class="p-6 lg:p-10">
+      <h1 class="font-display text-3xl mb-8">Dashboard</h1>
+      <div id="stats-grid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10"></div>
+      <div class="grid lg:grid-cols-2 gap-6">
+        <div class="bg-white rounded-2xl border border-black/5 p-6">
+          <h2 class="font-display text-lg mb-4">Recent Orders</h2>
+          <div id="recent-orders" class="space-y-3"></div>
+        </div>
+        <div class="bg-white rounded-2xl border border-black/5 p-6">
+          <h2 class="font-display text-lg mb-4">Recent Inquiries</h2>
+          <div id="recent-inquiries" class="space-y-3"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+</html>

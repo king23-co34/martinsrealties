@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Martins Realties — Property, Consulting &amp; Business Solutions in Nigeria</title>
+<meta name="description" content="Martins Realties (D'S Martins Nig Enterprise) offers premium real estate, property consulting, equipment outsourcing, oil & gas, and natural mineral solutions across Nigeria." />
+<link rel="icon" href="assets/logo.png" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    colors: { navy:'#123A57','navy-dark':'#0B2740', brass:'#B8862B','brass-light':'#D4A94F', ivory:'#F7F5F0', charcoal:'#1F2421', slate:'#5B6B79' },
+    fontFamily: { display:['Fraunces','serif'], sans:['Inter','sans-serif'] },
+  } } };
+</script>
+<link rel="stylesheet" href="css/style.css" />
+<script defer src="js/api.js"></script>
+<script defer src="js/ui.js"></script>
+<script defer src="js/main.js"></script>
+</head>
+<body class="bg-ivory text-charcoal" data-page="Home">
+<div id="site-header"></div>
+
+<!-- HERO -->
+<section class="relative min-h-[86vh] flex items-end">
+  <div class="absolute inset-0 -z-10">
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1920&auto=format&fit=crop" alt="Modern Lagos luxury residence" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-t from-navy-dark via-navy-dark/70 to-navy-dark/30"></div>
+  </div>
+  <div class="max-w-7xl mx-auto px-5 pb-20 pt-40 w-full">
+    <span class="inline-block text-brass-light text-xs tracked-caps mb-5 reveal">D'S MARTINS NIG ENTERPRISE</span>
+    <h1 class="font-display text-white text-4xl sm:text-6xl leading-[1.05] max-w-3xl reveal">Professional Real Estate, Property Consulting &amp; Business Solutions</h1>
+    <p class="text-white/80 text-lg mt-5 max-w-xl reveal">Trusted business solutions across Nigeria — from luxury properties to equipment outsourcing, oil &amp; gas and natural mineral ventures.</p>
+    <div class="flex flex-wrap gap-4 mt-8 reveal">
+      <a href="properties.html" class="bg-brass hover:bg-brass-light text-white font-semibold px-7 py-3.5 rounded-md transition-colors">Explore Properties</a>
+      <a href="contact.html" class="border border-white/40 hover:border-brass-light hover:text-brass-light text-white font-semibold px-7 py-3.5 rounded-md transition-colors">Request a Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="max-w-7xl mx-auto px-5 py-24">
+  <div class="flex items-center gap-3 mb-3 reveal"><span class="hex-divider"></span><span class="text-brass text-xs tracked-caps font-semibold">WHY MARTINS REALTIES</span></div>
+  <h2 class="font-display text-3xl sm:text-4xl max-w-xl mb-14 reveal">A single, trusted partner for property and business solutions.</h2>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6" id="services-grid">
+    <!-- filled by main.js -->
+  </div>
+</section>
+
+<!-- FEATURED PROPERTIES -->
+<section class="bg-white py-24">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex items-end justify-between mb-12 flex-wrap gap-4">
+      <div>
+        <div class="flex items-center gap-3 mb-3 reveal"><span class="hex-divider"></span><span class="text-brass text-xs tracked-caps font-semibold">FEATURED LISTINGS</span></div>
+        <h2 class="font-display text-3xl sm:text-4xl reveal">Properties worth a closer look</h2>
+      </div>
+      <a href="properties.html" class="text-navy font-semibold hover:text-brass transition-colors reveal">View all properties →</a>
+    </div>
+    <div id="featured-properties" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS + LEAVE A REVIEW -->
+<section class="max-w-7xl mx-auto px-5 py-24 grid lg:grid-cols-2 gap-16">
+  <div>
+    <div class="flex items-center gap-3 mb-3 reveal"><span class="hex-divider"></span><span class="text-brass text-xs tracked-caps font-semibold">CLIENT VOICES</span></div>
+    <h2 class="font-display text-3xl sm:text-4xl mb-8 reveal">What clients say</h2>
+    <div id="reviews-list" class="space-y-5"></div>
+  </div>
+  <div class="bg-navy-dark rounded-2xl p-8 sm:p-10 reveal">
+    <h3 class="font-display text-2xl text-white mb-2">Leave a review</h3>
+    <p class="text-white/60 text-sm mb-6">Reviews are moderated and appear once approved.</p>
+    <form id="review-form" class="space-y-4">
+      <div>
+        <label class="block text-white/70 text-xs mb-1.5">Rating</label>
+        <select name="rating" required class="w-full rounded-md bg-white/5 border border-white/15 text-white px-3 py-2.5 text-sm focus:border-brass">
+          <option value="5">★★★★★ Excellent</option>
+          <option value="4">★★★★ Very good</option>
+          <option value="3">★★★ Good</option>
+          <option value="2">★★ Fair</option>
+          <option value="1">★ Poor</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-white/70 text-xs mb-1.5">Your review</label>
+        <textarea name="comment" required maxlength="1000" rows="4" placeholder="Tell us about your experience..." class="w-full rounded-md bg-white/5 border border-white/15 text-white placeholder-white/30 px-3 py-2.5 text-sm focus:border-brass"></textarea>
+      </div>
+      <button type="submit" class="w-full bg-brass hover:bg-brass-light text-white font-semibold py-3 rounded-md transition-colors flex items-center justify-center gap-2">
+        <span class="btn-label">Submit Review</span>
+      </button>
+      <p id="review-note" class="text-white/40 text-xs"></p>
+    </form>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="bg-white py-24">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex items-center gap-3 mb-3 reveal"><span class="hex-divider"></span><span class="text-brass text-xs tracked-caps font-semibold">INSIGHTS</span></div>
+    <h2 class="font-display text-3xl sm:text-4xl mb-10 reveal">Latest from the blog</h2>
+    <div id="blog-preview"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="max-w-7xl mx-auto px-5 py-24 grid lg:grid-cols-2 gap-16">
+  <div>
+    <div class="flex items-center gap-3 mb-3 reveal"><span class="hex-divider"></span><span class="text-brass text-xs tracked-caps font-semibold">GET IN TOUCH</span></div>
+    <h2 class="font-display text-3xl sm:text-4xl mb-6 reveal">Talk to our team</h2>
+    <p class="text-slate mb-8 reveal">Have a property in mind, or need consulting on equipment, oil &amp; gas, or minerals? Send us a message and we'll respond promptly.</p>
+    <ul class="space-y-4 text-sm reveal">
+      <li class="flex gap-3"><span class="text-brass">📍</span><span>No. 4, Babatope Bejide Crescent, Off Fola Osibo, Lekki Phase 1, Lagos, Nigeria.</span></li>
+      <li class="flex gap-3"><span class="text-brass">📞</span><a href="tel:+2347034881125" class="hover:text-brass">+234 703 488 1125</a></li>
+      <li class="flex gap-3"><span class="text-brass">✉️</span><a href="mailto:martinsds845@gmail.com" class="hover:text-brass">martinsds845@gmail.com</a></li>
+    </ul>
+  </div>
+  <form id="contact-form" class="bg-white rounded-2xl shadow-sm border border-black/5 p-8 space-y-4 reveal">
+    <div class="grid sm:grid-cols-2 gap-4">
+      <input name="name" required placeholder="Full name" class="rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" />
+      <input name="email" type="email" required placeholder="Email address" class="rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" />
+    </div>
+    <div class="grid sm:grid-cols-2 gap-4">
+      <input name="phone" placeholder="Phone number" class="rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" />
+      <input name="subject" placeholder="Subject" class="rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" />
+    </div>
+    <textarea name="message" required rows="4" placeholder="Your message" class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass"></textarea>
+    <button type="submit" class="bg-navy hover:bg-navy-dark text-white font-semibold px-7 py-3 rounded-md transition-colors">Contact Us</button>
+  </form>
+</section>
+
+<!-- FAQ -->
+<section class="bg-white py-24">
+  <div class="max-w-4xl mx-auto px-5">
+    <div class="flex items-center gap-3 mb-3 reveal"><span class="hex-divider"></span><span class="text-brass text-xs tracked-caps font-semibold">FAQ</span></div>
+    <h2 class="font-display text-3xl sm:text-4xl mb-10 reveal">Frequently asked questions</h2>
+    <div id="faq-list" class="divide-y divide-black/10 border-t border-b border-black/10"></div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+</body>
+</html>

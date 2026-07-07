@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Create Account — Martins Realties</title>
+<link rel="icon" href="assets/logo.png" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    colors: { navy:'#123A57','navy-dark':'#0B2740', brass:'#B8862B','brass-light':'#D4A94F', ivory:'#F7F5F0', charcoal:'#1F2421', slate:'#5B6B79' },
+    fontFamily: { display:['Fraunces','serif'], sans:['Inter','sans-serif'] },
+  } } };
+</script>
+<link rel="stylesheet" href="css/style.css" />
+<script defer src="js/api.js"></script>
+<script defer src="js/ui.js"></script>
+</head>
+<body class="bg-ivory text-charcoal" data-page="Register">
+<div id="site-header"></div>
+
+<section class="max-w-md mx-auto px-5 py-20">
+  <div class="text-center mb-8">
+    <img src="assets/logo.png" class="h-14 w-14 mx-auto mb-4" alt="Martins Realties" />
+    <h1 class="font-display text-3xl">Create your account</h1>
+    <p class="text-slate text-sm mt-2">Join Martins Realties to save properties, leave reviews and place orders.</p>
+  </div>
+  <form id="register-form" class="bg-white rounded-2xl border border-black/5 p-8 space-y-4">
+    <div>
+      <label class="block text-xs text-slate mb-1.5">Full name</label>
+      <input name="name" required class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" />
+    </div>
+    <div>
+      <label class="block text-xs text-slate mb-1.5">Email address</label>
+      <input name="email" type="email" required class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" />
+    </div>
+    <div>
+      <label class="block text-xs text-slate mb-1.5">Phone number</label>
+      <input name="phone" required class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" />
+    </div>
+    <div>
+      <label class="block text-xs text-slate mb-1.5">Password</label>
+      <input name="password" type="password" required minlength="6" class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" />
+    </div>
+    <button type="submit" class="w-full bg-navy hover:bg-navy-dark text-white font-semibold py-3 rounded-md transition-colors flex items-center justify-center">
+      <span class="btn-label">Create Account</span>
+    </button>
+  </form>
+  <p class="text-center text-sm text-slate mt-6">Already have an account? <a href="login.html" class="text-brass font-semibold">Log in</a></p>
+</section>
+
+<div id="site-footer"></div>
+<script>
+redirectIfLoggedIn();
+document.getElementById('register-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button[type=submit]');
+  const label = btn.querySelector('.btn-label');
+  btn.disabled = true; label.innerHTML = '<span class="btn-spinner"></span>';
+  const payload = Object.fromEntries(new FormData(form).entries());
+  try {
+    const res = await Api.register(payload);
+    Auth.setToken(res.token);
+    Auth.setUser(res.data.user);
+    toast('Account created — welcome!', 'success');
+    setTimeout(() => (location.href = 'profile.html'), 500);
+  } catch (err) {
+    toast(apiErrorMessage(err), 'error');
+    btn.disabled = false; label.textContent = 'Create Account';
+  }
+});
+</script>
+</body>
+</html>

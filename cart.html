@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Your Cart — Martins Realties</title>
+<link rel="icon" href="assets/logo.png" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    colors: { navy:'#123A57','navy-dark':'#0B2740', brass:'#B8862B','brass-light':'#D4A94F', ivory:'#F7F5F0', charcoal:'#1F2421', slate:'#5B6B79' },
+    fontFamily: { display:['Fraunces','serif'], sans:['Inter','sans-serif'] },
+  } } };
+</script>
+<link rel="stylesheet" href="css/style.css" />
+<script defer src="js/api.js"></script>
+<script defer src="js/ui.js"></script>
+<script defer src="js/cart.js"></script>
+</head>
+<body class="bg-ivory text-charcoal" data-page="Cart">
+<div id="site-header"></div>
+
+<section class="max-w-5xl mx-auto px-5 py-16">
+  <h1 class="font-display text-3xl mb-10">Your Cart</h1>
+  <div class="grid lg:grid-cols-3 gap-8">
+    <div class="lg:col-span-2 space-y-4" id="cart-items">
+      <div class="h-24 skeleton rounded-xl"></div>
+    </div>
+    <div class="bg-white rounded-2xl border border-black/5 p-6 h-fit sticky top-24">
+      <h2 class="font-display text-lg mb-4">Order Summary</h2>
+      <div class="flex justify-between text-sm mb-2"><span class="text-slate">Items</span><span id="summary-count">0</span></div>
+      <div class="flex justify-between font-semibold text-base border-t border-black/10 pt-3 mb-6"><span>Total</span><span class="text-navy" id="summary-total">₦0</span></div>
+      <a href="checkout.html" id="checkout-btn" class="block text-center bg-brass hover:bg-brass-light text-white font-semibold py-3 rounded-md transition-colors">Proceed to Checkout</a>
+      <button id="clear-cart-btn" class="w-full text-center text-slate text-sm mt-3 hover:text-red-600">Clear cart</button>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+</body>
+</html>

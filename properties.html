@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Properties — Martins Realties</title>
+<meta name="description" content="Browse real estate listings for sale, rent and shortlet across Nigeria with Martins Realties." />
+<link rel="icon" href="assets/logo.png" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    colors: { navy:'#123A57','navy-dark':'#0B2740', brass:'#B8862B','brass-light':'#D4A94F', ivory:'#F7F5F0', charcoal:'#1F2421', slate:'#5B6B79' },
+    fontFamily: { display:['Fraunces','serif'], sans:['Inter','sans-serif'] },
+  } } };
+</script>
+<link rel="stylesheet" href="css/style.css" />
+<script defer src="js/api.js"></script>
+<script defer src="js/ui.js"></script>
+<script defer src="js/properties.js"></script>
+</head>
+<body class="bg-ivory text-charcoal" data-page="Properties">
+<div id="site-header"></div>
+
+<section class="bg-navy-dark py-16">
+  <div class="max-w-7xl mx-auto px-5">
+    <span class="text-brass-light text-xs tracked-caps">LISTINGS</span>
+    <h1 class="font-display text-white text-4xl mt-3">Find your next property</h1>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-5 py-10">
+  <form id="filter-form" class="bg-white rounded-xl border border-black/5 p-5 grid sm:grid-cols-2 lg:grid-cols-6 gap-3 mb-10">
+    <input name="q" placeholder="Search by title, city..." class="lg:col-span-2 rounded-md border border-black/10 px-3 py-2.5 text-sm focus:border-brass" />
+    <select name="type" class="rounded-md border border-black/10 px-3 py-2.5 text-sm focus:border-brass">
+      <option value="">All types</option>
+      <option value="apartment">Apartment</option><option value="house">House</option><option value="duplex">Duplex</option>
+      <option value="bungalow">Bungalow</option><option value="land">Land</option><option value="office">Office</option>
+      <option value="shortlet">Shortlet</option><option value="other">Other</option>
+    </select>
+    <select name="listingType" class="rounded-md border border-black/10 px-3 py-2.5 text-sm focus:border-brass">
+      <option value="">Sale / Rent / Shortlet</option>
+      <option value="sale">Sale</option><option value="rent">Rent</option><option value="shortlet">Shortlet</option>
+    </select>
+    <input name="city" placeholder="City" class="rounded-md border border-black/10 px-3 py-2.5 text-sm focus:border-brass" />
+    <select name="sort" class="rounded-md border border-black/10 px-3 py-2.5 text-sm focus:border-brass">
+      <option value="-createdAt">Newest first</option>
+      <option value="price">Price: low to high</option>
+      <option value="-price">Price: high to low</option>
+    </select>
+    <div class="lg:col-span-6 flex flex-wrap gap-3 items-center pt-1">
+      <input name="priceMin" type="number" placeholder="Min price (₦)" class="rounded-md border border-black/10 px-3 py-2.5 text-sm w-40 focus:border-brass" />
+      <input name="priceMax" type="number" placeholder="Max price (₦)" class="rounded-md border border-black/10 px-3 py-2.5 text-sm w-40 focus:border-brass" />
+      <input name="bedrooms" type="number" min="0" placeholder="Bedrooms" class="rounded-md border border-black/10 px-3 py-2.5 text-sm w-32 focus:border-brass" />
+      <button type="submit" class="bg-navy hover:bg-navy-dark text-white font-semibold px-6 py-2.5 rounded-md text-sm transition-colors">Search</button>
+      <button type="button" id="reset-filters" class="text-slate text-sm hover:text-brass">Clear filters</button>
+    </div>
+  </form>
+
+  <div id="results-meta" class="text-sm text-slate mb-5"></div>
+  <div id="properties-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 min-h-[200px]"></div>
+  <div id="pagination" class="flex items-center justify-center gap-2 mt-12"></div>
+</section>
+
+<div id="site-footer"></div>
+</body>
+</html>

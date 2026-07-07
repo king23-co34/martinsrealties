@@ -137,9 +137,9 @@ function renderNavbar(active = '') {
 
   const mobileAuthArea = Auth.isLoggedIn() ? `
     <a href="${base}profile.html" class="flex items-center gap-3 text-white/90 text-sm py-2.5"><span class="w-8 h-8 rounded-full bg-brass/20 border border-brass/50 flex items-center justify-center text-brass-light text-xs font-semibold">${(user?.name || 'U').charAt(0).toUpperCase()}</span>My Profile</a>
-    <a href="${base}cart.html" class="flex items-center gap-3 text-white/80 text-sm py-2.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>Cart</a>
-    ${user?.role === 'admin' ? `<a href="${base}admin/dashboard.html" class="flex items-center gap-3 text-white/80 text-sm py-2.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Admin Dashboard</a>` : ''}
-    <button onclick="doLogout()" class="w-full flex items-center gap-3 text-left text-red-400 text-sm py-2.5 mt-2 border-t border-white/10 pt-4"><svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4m7 14 5-5-5-5m5 5H9"/></svg>Log out</button>
+    <a href="${base}cart.html" class="flex items-center gap-3 text-white/80 text-sm py-2.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>Cart</a>
+    ${user?.role === 'admin' ? `<a href="${base}admin/dashboard.html" class="flex items-center gap-3 text-white/80 text-sm py-2.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Admin Dashboard</a>` : ''}
+    <button onclick="doLogout()" class="w-full flex items-center gap-3 text-left text-red-400 text-sm py-2.5 mt-2 border-t border-white/10 pt-4"><svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4m7 14 5-5-5-5m5 5H9"/></svg>Log out</button>
   ` : `
     <a href="${base}login.html" class="block w-full text-center border border-white/25 text-white font-semibold py-3 rounded-lg text-sm hover:border-brass-light hover:text-brass-light transition-colors">Log in</a>
     <a href="${base}register.html" class="block w-full text-center bg-brass text-white font-semibold py-3 rounded-lg text-sm hover:bg-brass-light transition-colors">Create an account</a>
@@ -323,19 +323,19 @@ function renderAdminSidebar(active = '') {
     <nav class="p-4 space-y-1">
       ${links.map((l) => `
         <a href="${l.href}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${active === l.label ? 'bg-brass/20 text-brass-light font-semibold' : 'text-white/70 hover:bg-white/5 hover:text-white'}">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="${l.icon}"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="${l.icon}"/></svg>
           ${l.label}
         </a>`).join('')}
       <a href="../profile.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-white/70 hover:bg-white/5 hover:text-white transition-colors">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
         My Profile
       </a>
       <a href="../index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-white/70 hover:bg-white/5 hover:text-white transition-colors">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12 12 4l9 8M5 10v10h14V10"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12 12 4l9 8M5 10v10h14V10"/></svg>
         Back to Site
       </a>
       <button onclick="doLogout()" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-400 hover:bg-red-500/10 transition-colors">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4m7 14 5-5-5-5m5 5H9"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4m7 14 5-5-5-5m5 5H9"/></svg>
         Log out
       </button>
     </nav>`;

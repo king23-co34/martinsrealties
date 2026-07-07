@@ -68,21 +68,74 @@ async function loadReviews() {
   }
 }
 
+const BLOG_POSTS = [
+  {
+    id: 1,
+    title: 'Guide to Investing in Victoria Island Real Estate',
+    excerpt: 'Discover why Victoria Island remains one of Africa\'s most sought-after investment destinations, with insights on emerging neighborhoods and investment strategies.',
+    category: 'Investment Guide',
+    date: 'July 2, 2026',
+    image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=800&auto=format&fit=crop',
+    slug: 'victoria-island-investment-guide'
+  },
+  {
+    id: 2,
+    title: 'Property Management Best Practices in Lagos',
+    excerpt: 'Learn the essentials of managing rental properties effectively in Lagos, from tenant vetting to maintenance protocols and financial planning.',
+    category: 'Management',
+    date: 'June 28, 2026',
+    image: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=800&auto=format&fit=crop',
+    slug: 'property-management-lagos'
+  },
+  {
+    id: 3,
+    title: 'The Rise of Shortlet Investments in Lagos',
+    excerpt: 'Explore how shortlet properties are reshaping the Lagos rental market, with strategies for maximizing occupancy and returns.',
+    category: 'Market Trends',
+    date: 'June 20, 2026',
+    image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=800&auto=format&fit=crop',
+    slug: 'shortlet-investments-lagos'
+  }
+];
+
 function blogPreview() {
   const mount = document.getElementById('blog-preview');
   if (!mount) return;
   mount.innerHTML = `
-    <div class="border border-dashed border-black/15 rounded-xl p-10 text-center reveal">
-      <p class="font-display text-xl mb-2">Blog articles are coming soon</p>
-      <p class="text-slate text-sm max-w-md mx-auto">We're preparing market insights and property guides. This section will populate automatically once articles are published.</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+      ${BLOG_POSTS.map(post => `
+        <article class="reveal group rounded-xl overflow-hidden bg-white border border-black/5 hover:border-brass/30 hover:shadow-lg transition-all">
+          <div class="overflow-hidden bg-gray-100 h-48 sm:h-56">
+            <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-2.5">
+              <span class="text-brass text-xs tracked-caps font-semibold">${post.category}</span>
+              <span class="text-slate text-xs">•</span>
+              <span class="text-slate text-xs">${post.date}</span>
+            </div>
+            <h3 class="font-display text-lg mb-3 leading-tight group-hover:text-brass transition-colors">${post.title}</h3>
+            <p class="text-slate text-sm leading-relaxed mb-4">${post.excerpt}</p>
+            <a href="#" class="inline-flex items-center gap-2 text-navy font-semibold text-sm hover:text-brass transition-colors">
+              Read more
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+      `).join('')}
     </div>`;
+  initReveal();
 }
 
 const FAQS = [
-  { q: 'How do I schedule a property viewing?', a: 'Reach out via the contact form or call us directly, referencing the property title, and our team will arrange a viewing at a convenient time.' },
-  { q: 'Do you handle both sales and rentals?', a: 'Yes — our listings include properties for sale, rent, and shortlet, clearly labelled on each listing.' },
-  { q: 'How does checkout / reservation work?', a: 'Add a property to your cart, then proceed to checkout with your contact details. Our admin team reviews and confirms every order.' },
-  { q: 'Can I request consulting outside real estate?', a: 'Yes — we also advise on equipment outsourcing, oil & gas, and natural mineral solutions. Contact us with your requirements.' },
+  { q: 'How do I schedule a property viewing?', a: 'Reach out via the contact form or call us directly at +234 703 488 1125, referencing the property title, and our team will arrange a viewing at a convenient time that works for you.' },
+  { q: 'Do you handle both sales and rentals?', a: 'Yes — our listings include properties for sale, rent, and shortlet, clearly labelled on each listing. We serve clients across Victoria Island, Lekki, Ikoyi, Ajah, Abuja, and Lagos Mainland.' },
+  { q: 'How does checkout / reservation work?', a: 'Add a property to your cart, then proceed to checkout with your contact details. Our admin team reviews and confirms every order within 24 hours, ensuring you\'re working with verified agents.' },
+  { q: 'Can I request consulting outside real estate?', a: 'Absolutely. We also advise on equipment outsourcing, oil & gas logistics, and natural mineral solutions. Contact us with your specific requirements and we\'ll provide tailored guidance.' },
+  { q: 'What areas do you primarily serve?', a: 'We operate across Lagos and Abuja, with primary focus on Victoria Island, Lekki Phase 1, Ikoyi, Ajah, and Lagos Mainland. However, we can assist with inquiries beyond these areas.' },
+  { q: 'Are there any hidden fees?', a: 'No. All pricing is transparent and clearly displayed on property listings. Our team can discuss any applicable fees or commissions upfront before you proceed.' },
+  { q: 'How long does property approval take?', a: 'Most properties are vetted and approved within 48-72 hours of submission. Complex commercial properties may require additional time for thorough verification.' },
+  { q: 'Do you offer property management services?', a: 'Yes, we provide comprehensive property management services including tenant vetting, maintenance coordination, and financial reporting for landlords.' },
 ];
 
 function faqList() {

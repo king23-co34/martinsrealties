@@ -119,6 +119,13 @@ body{padding-top:64px;}
 @media (min-width:1024px){ body{padding-top:70px;} }
 body[data-page^="Admin"]{padding-top:0;}
 
+/* Section spacing improvements */
+section{transition:all .3s ease;}
+
+/* Smooth section transitions */
+.bg-navy-dark{background-color:var(--navy-dark);}
+.bg-white{background-color:#fff;}
+
 /* Toast */
 #toast-root{position:fixed;top:16px;right:16px;z-index:10000;display:flex;flex-direction:column;gap:10px;}
 .toast{

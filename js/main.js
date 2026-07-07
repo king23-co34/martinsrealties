@@ -107,6 +107,25 @@ function faqList() {
   });
 }
 
+document.getElementById('hero-contact-form')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button[type=submit]');
+  const label = btn.querySelector('.btn-label');
+  const original = label.textContent;
+  btn.disabled = true; label.innerHTML = '<span class="btn-spinner"></span>';
+  const payload = Object.fromEntries(new FormData(form).entries());
+  try {
+    await Api.submitInquiry(payload);
+    toast('Message sent — we will get back to you shortly.', 'success');
+    form.reset();
+  } catch (err) {
+    toast(apiErrorMessage(err), 'error');
+  } finally {
+    btn.disabled = false; label.textContent = original;
+  }
+});
+
 document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const form = e.target;

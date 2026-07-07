@@ -437,6 +437,16 @@ function initReveal() {
   els.forEach((e) => io.observe(e));
 }
 
+/* ---------------- Safety net ----------------
+   Surfaces any unexpected JS error as a toast instead of failing silently,
+   so broken forms/buttons are always noticeable rather than just doing nothing. */
+window.addEventListener('error', (e) => {
+  if (document.getElementById('toast-root') || document.body) toast('Something went wrong on this page. Please refresh and try again.', 'error');
+});
+window.addEventListener('unhandledrejection', () => {
+  toast('Something went wrong. Please try again.', 'error');
+});
+
 /* ---------------- Boot ---------------- */
 document.addEventListener('DOMContentLoaded', () => {
   injectLoader();

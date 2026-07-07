@@ -16,7 +16,7 @@ function renderGallery(images = []) {
   main.innerHTML = `<img src="${list[activeImageIdx]?.url || list[0].url}" class="w-full h-full object-cover" alt="${escapeHtml(currentProperty?.title || 'Property image')}" />`;
 
   thumbs.innerHTML = list.map((img, i) => `
-    <button class="thumb-btn w-20 h-16 rounded-lg overflow-hidden border-2 ${i === activeImageIdx ? 'border-brass' : 'border-transparent'}" data-idx="${i}">
+    <button class="thumb-btn w-20 h-16 rounded-lg overflow-hidden border-2 shrink-0 ${i === activeImageIdx ? 'border-brass' : 'border-transparent'}" data-idx="${i}">
       <img src="${img.url}" class="w-full h-full object-cover" alt="Thumbnail ${i + 1}" />
     </button>`).join('');
 

@@ -8,6 +8,9 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<link rel="canonical" href="https://www.martinsrealties.com.ng/" />
+<!-- Google Search Console: paste your verification meta tag here (see SEARCH-CONSOLE.md), then remove this comment -->
+<!-- <meta name="google-site-verification" content="PASTE_YOUR_CODE_HERE" /> -->
 <meta name="theme-color" content="#0B2740" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -44,44 +47,45 @@
           <a href="properties.html" class="bg-brass hover:bg-brass-light text-white font-semibold px-7 py-3.5 rounded-lg transition-colors">Explore Properties</a>
           <a href="contact.html" class="border border-white/30 hover:border-brass-light hover:text-brass-light text-white font-semibold px-7 py-3.5 rounded-lg transition-colors">Request a Consultation</a>
         </div>
+        <div class="flex flex-wrap gap-x-6 gap-y-2 mt-7 reveal">
+          <span class="flex items-center gap-2 text-white/65 text-xs"><svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-brass-light shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 13 4 4L19 7"/></svg>Every listing vetted</span>
+          <span class="flex items-center gap-2 text-white/65 text-xs"><svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-brass-light shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 13 4 4L19 7"/></svg>Orders admin-confirmed</span>
+          <span class="flex items-center gap-2 text-white/65 text-xs"><svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-brass-light shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 13 4 4L19 7"/></svg>Consulting-led guidance</span>
+        </div>
       </div>
       <div class="lg:col-span-5 reveal">
-        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-6 sm:p-7 lg:ml-auto lg:max-w-sm">
-          <p class="text-brass-light text-xs tracked-caps font-semibold mb-5">WHY CLIENTS CHOOSE US</p>
-          <ul class="space-y-4">
-            <li class="flex items-start gap-3">
-              <span class="w-8 h-8 rounded-lg bg-brass/20 flex items-center justify-center shrink-0 mt-0.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 text-brass-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 13 4 4L19 7"/></svg></span>
-              <span class="text-white/85 text-sm pt-1.5">Every listing personally vetted before it's published</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="w-8 h-8 rounded-lg bg-brass/20 flex items-center justify-center shrink-0 mt-0.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 text-brass-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 13 4 4L19 7"/></svg></span>
-              <span class="text-white/85 text-sm pt-1.5">Every order confirmed by an administrator</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="w-8 h-8 rounded-lg bg-brass/20 flex items-center justify-center shrink-0 mt-0.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 text-brass-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 13 4 4L19 7"/></svg></span>
-              <span class="text-white/85 text-sm pt-1.5">Consulting-led guidance on every deal</span>
-            </li>
-          </ul>
+        <div class="bg-white rounded-2xl shadow-2xl shadow-black/30 p-6 sm:p-7 lg:max-w-sm lg:ml-auto">
+          <p class="font-display text-xl mb-1">Get a quick response</p>
+          <p class="text-slate text-sm mb-5">Tell us what you're looking for and we'll get back to you shortly.</p>
+          <form id="hero-contact-form" class="space-y-3">
+            <input name="name" required placeholder="Full name" class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" />
+            <input name="email" type="email" required placeholder="Email address" class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" />
+            <input name="phone" placeholder="Phone number" class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass" />
+            <textarea name="message" required rows="3" placeholder="What are you looking for?" class="w-full rounded-md border border-black/10 px-3.5 py-2.5 text-sm focus:border-brass resize-none"></textarea>
+            <button type="submit" class="w-full bg-navy hover:bg-navy-dark text-white font-semibold py-3 rounded-md transition-colors flex items-center justify-center">
+              <span class="btn-label">Send Message</span>
+            </button>
+          </form>
         </div>
       </div>
     </div>
   </div>
 
   <!-- QUICK SEARCH -->
-  <div class="max-w-6xl mx-auto px-5 relative z-10 -mb-10 sm:-mb-9">
-    <form action="properties.html" method="get" class="reveal bg-white/95 backdrop-blur rounded-2xl shadow-2xl shadow-black/20 border border-black/5 p-4 sm:p-5 grid sm:grid-cols-4 gap-3">
-      <div class="sm:col-span-1">
-        <label class="block text-[11px] font-semibold tracked-caps text-slate mb-1.5">LOOKING TO</label>
-        <select name="listingType" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-sm focus:border-brass bg-white">
+  <div class="max-w-5xl mx-auto px-5 relative z-10 -mb-8 sm:-mb-9">
+    <form action="properties.html" method="get" class="reveal bg-white/95 backdrop-blur rounded-xl shadow-2xl shadow-black/20 border border-black/5 p-3 sm:p-4 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 items-end">
+      <div class="col-span-1">
+        <label class="block text-[10px] font-semibold tracked-caps text-slate mb-1">LOOKING TO</label>
+        <select name="listingType" class="w-full rounded-lg border border-black/10 px-2.5 py-2 text-xs sm:text-sm focus:border-brass bg-white">
           <option value="">Buy, rent or shortlet</option>
           <option value="sale">Buy</option>
           <option value="rent">Rent</option>
           <option value="shortlet">Shortlet</option>
         </select>
       </div>
-      <div class="sm:col-span-1">
-        <label class="block text-[11px] font-semibold tracked-caps text-slate mb-1.5">LOCATION</label>
-        <input name="city" list="popular-areas" placeholder="Victoria Island, Lekki..." class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-sm focus:border-brass" />
+      <div class="col-span-1">
+        <label class="block text-[10px] font-semibold tracked-caps text-slate mb-1">LOCATION</label>
+        <input name="city" list="popular-areas" placeholder="Victoria Island, Lekki..." class="w-full rounded-lg border border-black/10 px-2.5 py-2 text-xs sm:text-sm focus:border-brass" />
         <datalist id="popular-areas">
           <option value="Victoria Island"></option>
           <option value="Lekki Phase 1"></option>
@@ -90,17 +94,17 @@
           <option value="Abuja"></option>
         </datalist>
       </div>
-      <div class="sm:col-span-1">
-        <label class="block text-[11px] font-semibold tracked-caps text-slate mb-1.5">PROPERTY TYPE</label>
-        <select name="type" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-sm focus:border-brass bg-white">
+      <div class="col-span-1">
+        <label class="block text-[10px] font-semibold tracked-caps text-slate mb-1">PROPERTY TYPE</label>
+        <select name="type" class="w-full rounded-lg border border-black/10 px-2.5 py-2 text-xs sm:text-sm focus:border-brass bg-white">
           <option value="">Any type</option>
           <option value="apartment">Apartment</option><option value="house">House</option><option value="duplex">Duplex</option>
           <option value="bungalow">Bungalow</option><option value="land">Land</option><option value="office">Office</option>
         </select>
       </div>
-      <div class="sm:col-span-1 flex items-end">
-        <button type="submit" class="w-full bg-navy hover:bg-navy-dark text-white font-semibold px-6 py-2.5 rounded-lg text-sm transition-colors flex items-center justify-center gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <div class="col-span-1">
+        <button type="submit" class="w-full bg-navy hover:bg-navy-dark text-white font-semibold px-4 py-2 rounded-lg text-xs sm:text-sm transition-colors flex items-center justify-center gap-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
           Search
         </button>
       </div>
@@ -109,7 +113,7 @@
 </section>
 
 <!-- AREAS WE SERVE -->
-<section class="bg-navy-dark pt-16 sm:pt-20 pb-10">
+<section class="bg-navy-dark pt-14 sm:pt-16 pb-10">
   <div class="max-w-7xl mx-auto px-5">
     <p class="text-center text-white/40 text-xs tracked-caps font-semibold mb-6 reveal">SERVING CLIENTS ACROSS</p>
     <div class="flex flex-wrap justify-center gap-x-10 gap-y-3 reveal">

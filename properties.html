@@ -8,6 +8,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<link rel="canonical" href="https://www.martinsrealties.com.ng/properties.html" />
 <meta name="theme-color" content="#0B2740" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -32,29 +33,29 @@
 </section>
 
 <section class="max-w-7xl mx-auto px-5 py-10">
-  <form id="filter-form" class="bg-white rounded-xl border border-black/5 p-5 grid sm:grid-cols-2 lg:grid-cols-6 gap-3 mb-10">
-    <input name="q" placeholder="Search by title, city..." class="lg:col-span-2 rounded-md border border-black/10 px-3 py-2.5 text-sm focus:border-brass" />
-    <select name="type" class="rounded-md border border-black/10 px-3 py-2.5 text-sm focus:border-brass">
+  <form id="filter-form" class="bg-white rounded-xl border border-black/5 p-4 sm:p-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3 mb-10">
+    <input name="q" placeholder="Search by title, city..." class="col-span-2 sm:col-span-3 lg:col-span-2 rounded-md border border-black/10 px-3 py-2 sm:py-2.5 text-sm focus:border-brass" />
+    <select name="type" class="rounded-md border border-black/10 px-3 py-2 sm:py-2.5 text-sm focus:border-brass">
       <option value="">All types</option>
       <option value="apartment">Apartment</option><option value="house">House</option><option value="duplex">Duplex</option>
       <option value="bungalow">Bungalow</option><option value="land">Land</option><option value="office">Office</option>
       <option value="shortlet">Shortlet</option><option value="other">Other</option>
     </select>
-    <select name="listingType" class="rounded-md border border-black/10 px-3 py-2.5 text-sm focus:border-brass">
+    <select name="listingType" class="rounded-md border border-black/10 px-3 py-2 sm:py-2.5 text-sm focus:border-brass">
       <option value="">Sale / Rent / Shortlet</option>
       <option value="sale">Sale</option><option value="rent">Rent</option><option value="shortlet">Shortlet</option>
     </select>
-    <input name="city" placeholder="City" class="rounded-md border border-black/10 px-3 py-2.5 text-sm focus:border-brass" />
-    <select name="sort" class="rounded-md border border-black/10 px-3 py-2.5 text-sm focus:border-brass">
+    <input name="city" placeholder="City" class="rounded-md border border-black/10 px-3 py-2 sm:py-2.5 text-sm focus:border-brass" />
+    <select name="sort" class="rounded-md border border-black/10 px-3 py-2 sm:py-2.5 text-sm focus:border-brass">
       <option value="-createdAt">Newest first</option>
       <option value="price">Price: low to high</option>
       <option value="-price">Price: high to low</option>
     </select>
-    <div class="lg:col-span-6 flex flex-wrap gap-3 items-center pt-1">
-      <input name="priceMin" type="number" placeholder="Min price (₦)" class="rounded-md border border-black/10 px-3 py-2.5 text-sm w-40 focus:border-brass" />
-      <input name="priceMax" type="number" placeholder="Max price (₦)" class="rounded-md border border-black/10 px-3 py-2.5 text-sm w-40 focus:border-brass" />
-      <input name="bedrooms" type="number" min="0" placeholder="Bedrooms" class="rounded-md border border-black/10 px-3 py-2.5 text-sm w-32 focus:border-brass" />
-      <button type="submit" class="bg-navy hover:bg-navy-dark text-white font-semibold px-6 py-2.5 rounded-md text-sm transition-colors">Search</button>
+    <div class="col-span-2 sm:col-span-3 lg:col-span-6 flex flex-wrap gap-2.5 sm:gap-3 items-center pt-1">
+      <input name="priceMin" type="number" placeholder="Min price (₦)" class="rounded-md border border-black/10 px-3 py-2 sm:py-2.5 text-sm w-36 sm:w-40 focus:border-brass" />
+      <input name="priceMax" type="number" placeholder="Max price (₦)" class="rounded-md border border-black/10 px-3 py-2 sm:py-2.5 text-sm w-36 sm:w-40 focus:border-brass" />
+      <input name="bedrooms" type="number" min="0" placeholder="Bedrooms" class="rounded-md border border-black/10 px-3 py-2 sm:py-2.5 text-sm w-28 sm:w-32 focus:border-brass" />
+      <button type="submit" class="bg-navy hover:bg-navy-dark text-white font-semibold px-5 sm:px-6 py-2 sm:py-2.5 rounded-md text-sm transition-colors">Search</button>
       <button type="button" id="reset-filters" class="text-slate text-sm hover:text-brass">Clear filters</button>
     </div>
   </form>

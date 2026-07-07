@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /cart.html
+Disallow: /checkout.html
+Disallow: /profile.html
+Disallow: /login.html
+Disallow: /register.html
+
+Sitemap: https://www.martinsrealties.com.ng/sitemap.xml

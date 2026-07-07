@@ -7,6 +7,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<meta name="robots" content="noindex, nofollow" />
 <meta name="theme-color" content="#0B2740" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -54,27 +55,30 @@
 
 <div id="site-footer"></div>
 <script>
-redirectIfLoggedIn();
-document.getElementById('register-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector('button[type=submit]');
-  const label = btn.querySelector('.btn-label');
-  btn.disabled = true; label.innerHTML = '<span class="btn-spinner"></span>';
-  const slowHint = setTimeout(() => { label.innerHTML = '<span class="btn-spinner"></span><span class="ml-2 text-sm">Waking up server…</span>'; }, 4000);
-  const payload = Object.fromEntries(new FormData(form).entries());
-  try {
-    const res = await Api.register(payload);
-    Auth.setToken(res.token);
-    Auth.setUser(res.data.user);
-    toast('Account created — welcome!', 'success');
-    setTimeout(() => (location.href = 'profile.html'), 500);
-  } catch (err) {
-    toast(apiErrorMessage(err), 'error');
-    btn.disabled = false; label.textContent = 'Create Account';
-  } finally {
-    clearTimeout(slowHint);
-  }
+document.addEventListener('DOMContentLoaded', () => {
+  redirectIfLoggedIn();
+  document.getElementById('register-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('button[type=submit]');
+    const label = btn.querySelector('.btn-label');
+    const originalLabel = label.textContent;
+    btn.disabled = true; label.innerHTML = '<span class="btn-spinner"></span>';
+    const slowHint = setTimeout(() => { label.innerHTML = '<span class="btn-spinner"></span><span class="ml-2 text-sm">Waking up server…</span>'; }, 4000);
+    const payload = Object.fromEntries(new FormData(form).entries());
+    try {
+      const res = await Api.register(payload);
+      Auth.setToken(res.token);
+      Auth.setUser(res.data.user);
+      toast('Account created — welcome!', 'success');
+      setTimeout(() => (location.href = 'profile.html'), 500);
+    } catch (err) {
+      toast(apiErrorMessage(err), 'error');
+      btn.disabled = false; label.textContent = originalLabel;
+    } finally {
+      clearTimeout(slowHint);
+    }
+  });
 });
 </script>
 </body>

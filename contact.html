@@ -8,6 +8,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<link rel="canonical" href="https://www.martinsrealties.com.ng/contact.html" />
 <meta name="theme-color" content="#0B2740" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -66,22 +67,24 @@
 
 <div id="site-footer"></div>
 <script>
-document.getElementById('contact-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector('button[type=submit]');
-  const label = btn.querySelector('.btn-label');
-  btn.disabled = true; label.innerHTML = '<span class="btn-spinner"></span>';
-  const payload = Object.fromEntries(new FormData(form).entries());
-  try {
-    await Api.submitInquiry(payload);
-    toast('Message sent — we will get back to you shortly.', 'success');
-    form.reset();
-  } catch (err) {
-    toast(apiErrorMessage(err), 'error');
-  } finally {
-    btn.disabled = false; label.textContent = 'Contact Us';
-  }
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('contact-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('button[type=submit]');
+    const label = btn.querySelector('.btn-label');
+    btn.disabled = true; label.innerHTML = '<span class="btn-spinner"></span>';
+    const payload = Object.fromEntries(new FormData(form).entries());
+    try {
+      await Api.submitInquiry(payload);
+      toast('Message sent — we will get back to you shortly.', 'success');
+      form.reset();
+    } catch (err) {
+      toast(apiErrorMessage(err), 'error');
+    } finally {
+      btn.disabled = false; label.textContent = 'Contact Us';
+    }
+  });
 });
 </script>
 </body>

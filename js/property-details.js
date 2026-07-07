@@ -87,7 +87,7 @@ async function loadProperty() {
     const res = await Api.getProperty(id);
     currentProperty = res?.data?.property || res?.data;
     if (!currentProperty) throw new Error('Not found');
-    document.title = `${currentProperty.title} — Martins Realties`;
+    document.title = `${currentProperty.title} — D'S Martins Nig Enterprise`;
     renderGallery(currentProperty.images);
     renderSidebar(currentProperty);
     renderDescription(currentProperty);

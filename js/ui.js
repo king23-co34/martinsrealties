@@ -1,7 +1,7 @@
-/* Martins Realties — shared UI: navbar, footer, toasts, loader, guards */
+/* D'S Martins Nig Enterprise — shared UI: navbar, footer, toasts, loader, guards */
 
 const BIZ = {
-  name: 'Martins Realties',
+  name: "D'S Martins Nig Enterprise",
   legalName: "D'S Martins Nig Enterprise",
   phone: '+234 703 488 1125',
   phoneHref: '+2347034881125',
@@ -65,9 +65,9 @@ function injectLoader() {
   div.id = 'brand-loader';
   div.innerHTML = `
     <div class="loader-inner">
-      <img src="${assetPath('assets/mark.svg')}" alt="Martins Realties" class="loader-logo" />
+      <img src="${assetPath('assets/mark.svg')}" alt="D'S Martins Nig Enterprise" class="loader-logo" />
       <div class="loader-bar"></div>
-      <span class="loader-word tracked-caps">MARTINS REALTIES</span>
+      <span class="loader-word tracked-caps">D'S MARTINS NIG ENTERPRISE</span>
     </div>`;
   document.body.prepend(div);
 }
@@ -149,8 +149,8 @@ function renderNavbar(active = '') {
   <header id="site-header-el" class="fixed top-0 inset-x-0 z-40 bg-navy-dark/95 backdrop-blur border-b border-white/10 transition-shadow">
     <div class="max-w-7xl mx-auto px-5 flex items-center justify-between h-16 lg:h-[70px]">
       <a href="${base}index.html" class="flex items-center gap-2.5 shrink-0">
-        <img src="${base}assets/mark.svg" alt="Martins Realties logo" class="h-9 w-9 lg:h-10 lg:w-10 object-contain" />
-        <span class="font-display text-white text-base lg:text-lg tracking-wide leading-tight">Martins <span class="text-brass-light">Realties</span></span>
+        <img src="${base}assets/mark.svg" alt="D'S Martins Nig Enterprise logo" class="h-9 w-9 lg:h-10 lg:w-10 object-contain" />
+        <span class="font-display text-white text-sm lg:text-base tracking-wide leading-tight whitespace-nowrap">D'S Martins <span class="text-brass-light">Nig Enterprise</span></span>
       </a>
       <nav class="hidden lg:flex items-center gap-8">${links}</nav>
       <div class="hidden lg:flex items-center gap-5">${authArea}</div>
@@ -167,8 +167,8 @@ function renderNavbar(active = '') {
   <div id="mobile-menu" class="lg:hidden fixed top-0 right-0 h-full w-[84%] max-w-sm z-50 bg-navy-dark border-l border-white/10 translate-x-full transition-transform duration-300 ease-out flex flex-col">
     <div class="flex items-center justify-between h-16 px-5 border-b border-white/10 shrink-0">
       <a href="${base}index.html" class="flex items-center gap-2.5">
-        <img src="${base}assets/mark.svg" alt="Martins Realties" class="h-8 w-8 object-contain" />
-        <span class="font-display text-white text-sm tracking-wide">Martins Realties</span>
+        <img src="${base}assets/mark.svg" alt="D'S Martins Nig Enterprise" class="h-8 w-8 object-contain" />
+        <span class="font-display text-white text-sm tracking-wide">D'S Martins Nig Enterprise</span>
       </a>
       <button id="mobile-close" class="w-9 h-9 flex items-center justify-center rounded-lg border border-white/15 text-white/80" aria-label="Close menu">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>
@@ -237,10 +237,10 @@ function renderFooter() {
     <div class="max-w-7xl mx-auto px-5 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
       <div>
         <a href="${base}index.html" class="flex items-center gap-2.5 mb-4">
-          <img src="${base}assets/mark.svg" class="h-9 w-9 object-contain" alt="Martins Realties" />
-          <span class="font-display text-white text-base">Martins Realties</span>
+          <img src="${base}assets/mark.svg" class="h-9 w-9 object-contain" alt="D'S Martins Nig Enterprise" />
+          <span class="font-display text-white text-base">D'S Martins Nig Enterprise</span>
         </a>
-        <p class="text-sm leading-relaxed">${BIZ.legalName} — professional real estate, property consulting, equipment outsourcing, oil &amp; gas, and natural mineral solutions across Nigeria.</p>
+        <p class="text-sm leading-relaxed">${BIZ.legalName} — a diversified Nigerian enterprise spanning Property &amp; Real Estate, Oil &amp; Gas, and Equipment Leasing.</p>
         <div class="flex gap-4 mt-5">
           <a href="${BIZ.facebook}" target="_blank" rel="noopener" aria-label="Facebook" class="hover:text-brass-light">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>
@@ -260,9 +260,11 @@ function renderFooter() {
         </ul>
       </div>
       <div>
-        <h4 class="text-white font-display text-sm tracking-wide mb-4">Services</h4>
+        <h4 class="text-white font-display text-sm tracking-wide mb-4">Our Business Lines</h4>
         <ul class="space-y-2 text-sm">
-          <li>Real Estate</li><li>Property Consulting</li><li>Equipment Outsourcing</li><li>Oil &amp; Gas</li><li>Natural Minerals</li>
+          <li><a href="${base}business-real-estate.html" class="hover:text-brass-light">Property &amp; Real Estate</a></li>
+          <li><a href="${base}business-oil-gas.html" class="hover:text-brass-light">Oil &amp; Gas</a></li>
+          <li><a href="${base}business-equipment-leasing.html" class="hover:text-brass-light">Equipment Leasing</a></li>
         </ul>
       </div>
       <div>
@@ -316,7 +318,7 @@ function renderAdminSidebar(active = '') {
   mount.innerHTML = `
     <div class="p-6 border-b border-white/10">
       <a href="../index.html" class="flex items-center gap-2.5">
-        <img src="../assets/mark.svg" class="h-8 w-8 object-contain" alt="Martins Realties" />
+        <img src="../assets/mark.svg" class="h-8 w-8 object-contain" alt="D'S Martins Nig Enterprise" />
         <span class="font-display text-white text-sm">Admin Panel</span>
       </a>
     </div>

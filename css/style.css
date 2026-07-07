@@ -1,4 +1,4 @@
-/* Martins Realties — brand styles
+/* D'S Martins Nig Enterprise — brand styles
    Palette: navy #123A57 (primary/logo), brass #B8862B (accent),
    ivory #F7F5F0 (bg), charcoal #1F2421 (text), slate #5B6B79 (muted) */
 
@@ -72,7 +72,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   0%{transform:translateX(-120%);}
   100%{transform:translateX(340%);}
 }
-.loader-word{color:var(--ivory);font-family:'Fraunces',serif;font-size:13px;letter-spacing:.3em;opacity:.8;}
+.loader-word{color:var(--ivory);font-family:'Fraunces',serif;font-size:13px;letter-spacing:.3em;opacity:.8;max-width:min(80vw,340px);text-align:center;white-space:normal;}
 
 /* Inline button loading dots */
 .btn-spinner{

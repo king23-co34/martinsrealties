@@ -1,4 +1,4 @@
-/* Martins Realties — API client
+/* D'S Martins Nig Enterprise — API client
    Talks to the live backend documented in the project README.
    Auth: JWT returned in the response body, stored in localStorage,
    sent as a Bearer token (backend also sets an httpOnly cookie as a fallback). */
